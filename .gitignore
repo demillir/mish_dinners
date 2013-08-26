@@ -7,6 +7,9 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore RubyMine
+/.idea
+
 # Ignore the default SQLite database.
 /db/*.sqlite3
 /db/*.sqlite3-journal
@@ -17,3 +20,6 @@
 
 # Bundle-installed gems
 /vendor/ruby
+
+# Ignore application configuration
+/config/application.yml
