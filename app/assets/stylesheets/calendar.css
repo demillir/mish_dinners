@@ -1,0 +1,87 @@
+body {
+  font: 11px Garamond, Georgia, serif;
+}
+
+h1 {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+body > header > p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+table, th, td {
+  border: 2px solid #333;
+}
+
+th {
+  color: white;
+  background: darkgrey;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+td.day {
+  padding: 6px 2.5px 1px;
+  width: 140px;
+  height: 120px;
+}
+
+td.day > header {
+  text-align: center;
+  font-style: italic;
+  font-weight: bold;
+  color: blue;
+}
+
+section.appointment {
+  background: #eee;
+  margin: 3px;
+  border: 1px dashed grey;
+  padding: 0 2px;
+  height: 72px;
+}
+
+section.appointment.sack {
+  background-image: url('sack.png');
+}
+
+header.companionship {
+  float: right;
+  color: red;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+section.appointment table, section.appointment th, section.appointment td {
+  border: 0;
+}
+
+section.appointment table {
+  line-height: 24px;
+  font-size: 12px;
+}
+
+section.appointment tr td:first-child {
+  font-size: 8px;
+}
+
+section.appointment td {
+  padding: 0 1px;
+}
+
+footer {
+  margin: 6px 14px 0;
+  font-size: 14px;
+}
+
+footer p {
+  text-align: center;
+}
+
+footer p span {
+  margin: 0 10px;
+}
