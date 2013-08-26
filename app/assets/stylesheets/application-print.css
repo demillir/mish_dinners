@@ -2,5 +2,5 @@
  *= require html5reset-1.6.1
  *= require_self
  *= require calendar
- *= require_tree ./screen
+ *= require_tree ./print
  */

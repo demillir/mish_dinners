@@ -1,5 +1,6 @@
 body {
-  font: 11px Garamond, Georgia, serif;
+  width: 960px;
+  margin: 0 auto;
 }
 
 h1 {
@@ -26,7 +27,7 @@ th {
 
 td.day {
   padding: 6px 2.5px 1px;
-  width: 140px;
+  width: 130px;
   height: 120px;
 }
 
@@ -42,11 +43,11 @@ section.appointment {
   margin: 3px;
   border: 1px dashed grey;
   padding: 0 2px;
-  height: 72px;
+  height: 78px;
 }
 
 section.appointment.sack {
-  background-image: url('sack.png');
+  background-image: url(sack.png);
 }
 
 header.companionship {
@@ -61,7 +62,7 @@ section.appointment table, section.appointment th, section.appointment td {
 }
 
 section.appointment table {
-  line-height: 24px;
+  line-height: 26px;
   font-size: 12px;
 }
 
