@@ -13,6 +13,7 @@ class Calendar
   delegate :division_abbr,     :to => :unit
   delegate :division_abbr,     :to => :unit
   delegate :abbr,              :to => :unit, :prefix => true
+  delegate :uuid,              :to => :unit, :prefix => true
 
   def weeks
     (0..2).map { |w|
