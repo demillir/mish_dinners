@@ -8,7 +8,7 @@ class CalendarsController < ApplicationController
   def show
     today = Date.today
     first_sunday = today - today.wday
-    @calendar = Calendar.new(@unit, first_sunday, for_print: params[:print])
+    @calendar = Calendar.new(@unit, first_sunday, for_print: params.has_key?(:print))
   end
 
   private
