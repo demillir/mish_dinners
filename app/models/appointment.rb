@@ -1,4 +1,6 @@
 class Appointment < ActiveRecord::Base
+  include NormalizesPhone
+
   belongs_to :day
   belongs_to :recipient
 
