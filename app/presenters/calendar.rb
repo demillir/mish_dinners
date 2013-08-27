@@ -60,6 +60,11 @@ end
 
 CalendarAppointment = Struct.new(:name, :phone, :email, :css_class, :recipient_number) do
   include ActiveModel::Conversion
+
+  def css_class_with_default
+    css_class_without_default || Figaro.env.css_classes.split.first
+  end
+  alias_method_chain :css_class, :default
 end
 
 CalendarRecipient = Struct.new(:number, :phone) do
