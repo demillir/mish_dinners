@@ -8,6 +8,9 @@ class CalendarsController < ApplicationController
   def show
     today = Date.today
     first_sunday = today - today.wday
+    first_sunday += 7 if params.has_key?(:next)
+    first_sunday -= 7 if params.has_key?(:prev)
+
     @calendar = Calendar.new(@unit, first_sunday, for_print: params.has_key?(:print))
   end
 
