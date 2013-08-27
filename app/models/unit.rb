@@ -3,6 +3,9 @@ class Unit < ActiveRecord::Base
   has_many   :recipients, :dependent => :destroy
   has_many   :days, :dependent => :destroy
 
+  validates :division, :presence => true
+  validates :abbr,     :uniqueness => {:scope => :division_id, :case_sensitive => false}
+
   delegate :abbr, :to => :division, :prefix => true
 
   def appointment_data_for_date_and_recipient_number(date, recipient_number)
