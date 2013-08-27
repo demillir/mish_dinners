@@ -1,18 +1,18 @@
 class Calendar
+  attr_reader :unit
+
   def initialize(unit, first_sunday, options={})
     @unit         = Unit.where(id: unit.try(:id)).includes(:division, :recipients, :days => :appointments).first
     @first_sunday = first_sunday
     @for_print    = options[:for_print]
   end
 
-  delegate :coordinator_email, :to => :@unit
-  delegate :meal_time,         :to => :@unit
-  delegate :volunteer_pitch,   :to => :@unit
-  delegate :division_abbr,     :to => :@unit
-
-  def unit_abbr
-    @unit.abbr
-  end
+  delegate :coordinator_email, :to => :unit
+  delegate :meal_time,         :to => :unit
+  delegate :volunteer_pitch,   :to => :unit
+  delegate :division_abbr,     :to => :unit
+  delegate :division_abbr,     :to => :unit
+  delegate :abbr,              :to => :unit, :prefix => true
 
   def weeks
     (0..2).map { |w|
