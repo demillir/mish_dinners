@@ -1,12 +1,20 @@
 body {
   width: 960px;
   margin: 0 auto;
+  color: #012e3d;
 }
 
 h1 {
   text-align: center;
   font-size: 20px;
   font-weight: bold;
+  color: #015367;
+  background: #60b9ce;
+}
+
+body > header {
+  color: #222;
+  background: white;
 }
 
 body > header > p {
@@ -14,13 +22,17 @@ body > header > p {
   font-size: 14px;
 }
 
+table.calendar {
+  background: #fff0f6;
+}
+
 table, th, td {
-  border: 2px solid #333;
+  border: 2px solid #015367;
 }
 
 th {
   color: white;
-  background: darkgrey;
+  background: #015367;
   font-size: 14px;
   line-height: 17px;
 }
@@ -35,26 +47,33 @@ td.day > header {
   text-align: center;
   font-style: italic;
   font-weight: bold;
-  color: blue;
+  color: #015367;
 }
 
 section.appointment {
-  background: #eee;
   margin: 3px;
   border: 1px dashed grey;
   padding: 0 2px;
   height: 78px;
+  position: relative;
 }
 
-section.appointment.sack {
+section.appointment table {
+  background: #fffafc;
+  width: 119px;
+}
+
+section.appointment.sack table {
   background-image: url(<%= asset_path 'sack.png' %>);
 }
 
-header.companionship {
+header.recipient {
   float: right;
   color: red;
   font-weight: bold;
   font-size: 10px;
+  position: absolute;
+  right: 1px;
 }
 
 section.appointment table, section.appointment th, section.appointment td {
@@ -62,7 +81,7 @@ section.appointment table, section.appointment th, section.appointment td {
 }
 
 section.appointment table {
-  line-height: 26px;
+  line-height: 24px;
   font-size: 12px;
 }
 
