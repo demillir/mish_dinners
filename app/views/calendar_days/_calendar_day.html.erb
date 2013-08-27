@@ -1,4 +1,14 @@
 <td class="day">
   <header><%= calendar_day.date.to_s(:short) %></header>
-  <%= render partial: calendar_day.appointments, locals: {f: f} %>
+
+  <% if f %>
+    <%= f.fields_for calendar_day.date.to_s do |df| %>
+      <%= render partial:    'calendar_appointments/calendar_appointment_edit',
+                 collection: calendar_day.appointments,
+                 as:         'calendar_appointment',
+                 locals:     {f: df} %>
+    <% end %>
+  <% else %>
+    <%= render partial: calendar_day.appointments, locals: {f: f} %>
+  <% end %>
 </td>

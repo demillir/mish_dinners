@@ -1,0 +1,32 @@
+<%= form_for @calendar,
+             url: calendars_path(division_abbr: @calendar.division_abbr,
+                                 unit_abbr:     @calendar.unit_abbr,
+                                 uuid:          @calendar.unit_uuid) do |f| %>
+  <div class='buttons'>
+    <%= submit_tag "Save changes", class: "save_btn" %>
+  </div>
+
+  <table class="calendar">
+    <thead>
+    <tr>
+      <th>SUN</th>
+      <th>MON</th>
+      <th>TUE</th>
+      <th>WED</th>
+      <th>THU</th>
+      <th>FRI</th>
+      <th>SAT</th>
+    </tr>
+    </thead>
+
+    <tbody>
+
+    <%= render partial: @calendar.weeks, locals: {f: f} %>
+
+    </tbody>
+  </table>
+
+  <div class='buttons'>
+    <%= submit_tag "Save changes", class: "save_btn" %>
+  </div>
+<% end %>

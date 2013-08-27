@@ -2,3 +2,67 @@ body {
   font: 11px Arial, sans-serif;
   margin: 24px auto;
 }
+
+input.edit_input {
+  width: 75px;
+  font-size: 11px;
+}
+
+section.appointment td label {
+  font-size: 11px;
+  position: relative;
+  top: 2px;
+}
+
+div.buttons {
+  text-align: center;
+  margin: 20px;
+}
+
+.save_btn {
+  -moz-box-shadow: inset 0px 1px 0px 0px #fbafe3;
+  -webkit-box-shadow: inset 0px 1px 0px 0px #fbafe3;
+  box-shadow: inset 0px 1px 0px 0px #fbafe3;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ff5bb0), color-stop(1, #ef027d));
+  background: -moz-linear-gradient(center top, #ff5bb0 5%, #ef027d 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff5bb0', endColorstr='#ef027d');
+  background-color: #ff5bb0;
+  -webkit-border-top-left-radius: 20px;
+  -moz-border-radius-topleft: 20px;
+  border-top-left-radius: 20px;
+  -webkit-border-top-right-radius: 20px;
+  -moz-border-radius-topright: 20px;
+  border-top-right-radius: 20px;
+  -webkit-border-bottom-right-radius: 20px;
+  -moz-border-radius-bottomright: 20px;
+  border-bottom-right-radius: 20px;
+  -webkit-border-bottom-left-radius: 20px;
+  -moz-border-radius-bottomleft: 20px;
+  border-bottom-left-radius: 20px;
+  text-indent: 0;
+  border: 1px solid #ee1eb5;
+  display: inline-block;
+  color: #ffffff;
+  font-family: Arial;
+  font-size: 19px;
+  font-weight: bold;
+  font-style: normal;
+  height: 44px;
+  line-height: 44px;
+  width: 173px;
+  text-decoration: none;
+  text-align: center;
+  text-shadow: 1px 1px 0px #c70067;
+}
+
+.save_btn:hover {
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0.05, #ef027d), color-stop(1, #ff5bb0));
+  background: -moz-linear-gradient(center top, #ef027d 5%, #ff5bb0 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ef027d', endColorstr='#ff5bb0');
+  background-color: #ef027d;
+}
+
+.save_btn:active {
+  position: relative;
+  top: 1px;
+}

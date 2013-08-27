@@ -1,0 +1,28 @@
+<section class="appointment" style="height: auto;">
+  <header class="recipient"><%= calendar_appointment.recipient_number %></header>
+  <%= f.fields_for calendar_appointment.recipient_number.to_s do |af| %>
+    <table>
+      <tr>
+        <td>Name:</td>
+        <td><%= af.text_field :name, :class => 'edit_input', :value => calendar_appointment.name %></td>
+      </tr>
+      <tr>
+        <td>Phone:</td>
+        <td><%= af.text_field :phone, :class => 'edit_input', :value => calendar_appointment.phone %></td>
+      </tr>
+      <tr>
+        <td>Email:</td>
+        <td><%= af.text_field :email, :class => 'edit_input', :value => calendar_appointment.email %></td>
+      </tr>
+      <% Figaro.env.css_classes.split.each do |lbl| %>
+        <tr>
+          <td></td>
+          <td>
+            <%= af.radio_button :css_class, lbl, checked: (calendar_appointment.css_class == lbl) %>
+            <%= af.label "css_class_#{lbl}", lbl.truncate(9) %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+</section>
