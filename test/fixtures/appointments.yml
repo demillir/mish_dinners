@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  day_id:
+  recipient_id: 
+  name: MyString
+  phone: MyString
+  email: MyString
+  css_class: MyString
+
+two:
+  day_id:
+  recipient_id: 
+  name: MyString
+  phone: MyString
+  email: MyString
+  css_class: MyString

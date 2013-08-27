@@ -8,6 +8,11 @@ class Calendar
   delegate :coordinator_email, :to => :@unit
   delegate :meal_time,         :to => :@unit
   delegate :volunteer_pitch,   :to => :@unit
+  delegate :division_abbr,     :to => :@unit
+
+  def unit_abbr
+    @unit.abbr
+  end
 
   def weeks
     (0..2).map { |w|
@@ -20,8 +25,8 @@ class Calendar
     (1..@unit.number_of_recipients).map { |i|
       recipient_data_hash = @unit.recipient_data_for_recipient_number(i)
       CalendarRecipient.new(
-        recipient_data_hash[:number],
-        recipient_data_hash[:phone]
+        recipient_data_hash['number'],
+        recipient_data_hash['phone']
       )
     }
   end
@@ -36,10 +41,10 @@ CalendarWeek = Struct.new(:start_date, :unit, :for_print?) do
       CalendarDay.new(date, (1..2).map { |i|
         appointment_data_hash = unit.appointment_data_for_date_and_recipient_number(date, i)
         CalendarAppointment.new(
-          appointment_data_hash[:name],
-          for_print? ? appointment_data_hash[:phone] : nil,
-          for_print? ? appointment_data_hash[:email] : nil,
-          appointment_data_hash[:css_class],
+          appointment_data_hash['name'],
+          for_print? ? appointment_data_hash['phone'] : nil,
+          for_print? ? appointment_data_hash['email'] : nil,
+          appointment_data_hash['css_class'],
           i)
       })
     }

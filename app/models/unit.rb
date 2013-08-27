@@ -1,36 +1,34 @@
-class Unit
-  def coordinator_email
-    'LOmissionarymeals@gmail.com'
-  end
+class Unit < ActiveRecord::Base
+  belongs_to :division
+  has_many   :recipients, :dependent => :destroy
+  has_many   :days, :dependent => :destroy
 
-  def meal_time
-    '6pm for dinner in your home, 3-6pm for sack dinners.'
-  end
-
-  def volunteer_pitch
-    <<-EOS
-      Please sign up to provide dinner for the missionaries serving in the Lake Oswego Ward.
-      You can sign up for one or both companionships on the same evening.
-      Include your email address to receive a reminder email two days before the dinner appointment.
-      If a dinner slot has a "SACK" watermark, the meal should be a sack dinner delivered to the
-      Portland Temple Visitors' Center.
-    EOS
-  end
+  delegate :abbr, :to => :division, :prefix => true
 
   def appointment_data_for_date_and_recipient_number(date, recipient_number)
-    {
-      name:      'Leuenberger',
-      phone:     '503-999-0000',
-      email:     'foo@bar.com',
-      css_class: ['sack', nil].sample,
-    }
+    day = days.where(date: date).first
+    return {} unless day
+
+    recipient = recipient_by_number(recipient_number)
+    return {} unless recipient
+
+    day.appointment_data_for_recipient(recipient)
   end
 
   def number_of_recipients
-    2
+    @number_of_recipients ||= recipients.count
   end
 
   def recipient_data_for_recipient_number(recipient_number)
-    %w( 503-490-3314 503-608-8858 ).map { |ph| {phone: ph} }[recipient_number-1].merge(number: recipient_number)
+    recipient = recipient_by_number(recipient_number)
+    return {} unless recipient
+
+    recipient.attributes.merge('number' => recipient_number)
+  end
+
+  private
+
+  def recipient_by_number(recipient_number)
+    recipients.order('id asc').to_a[recipient_number-1]
   end
 end

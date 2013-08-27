@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  division_id: 
+  abbr: MyString
+  coordinator_email: MyString
+  meal_time: MyString
+  volunteer_pitch: MyText
+
+two:
+  division_id: 
+  abbr: MyString
+  coordinator_email: MyString
+  meal_time: MyString
+  volunteer_pitch: MyText

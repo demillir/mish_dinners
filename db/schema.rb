@@ -11,9 +11,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20130827034713) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "appointments", force: true do |t|
+    t.integer  "day_id"
+    t.integer  "recipient_id"
+    t.string   "name"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "css_class"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "appointments", ["day_id"], name: "index_appointments_on_day_id", using: :btree
+  add_index "appointments", ["recipient_id"], name: "index_appointments_on_recipient_id", using: :btree
+
+  create_table "days", force: true do |t|
+    t.integer  "unit_id"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "days", ["unit_id"], name: "index_days_on_unit_id", using: :btree
+
+  create_table "divisions", force: true do |t|
+    t.string   "abbr"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "recipients", force: true do |t|
+    t.integer  "unit_id"
+    t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "recipients", ["unit_id"], name: "index_recipients_on_unit_id", using: :btree
+
+  create_table "units", force: true do |t|
+    t.integer  "division_id"
+    t.string   "abbr"
+    t.string   "coordinator_email"
+    t.string   "meal_time"
+    t.text     "volunteer_pitch"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "units", ["division_id"], name: "index_units_on_division_id", using: :btree
 
 end
