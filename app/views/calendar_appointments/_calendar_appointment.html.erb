@@ -1,0 +1,17 @@
+<section class="appointment <%= calendar_appointment.css_class %>">
+  <header class="recipient"><%= calendar_appointment.recipient_number %></header>
+  <table>
+    <tr>
+      <td>Name:</td>
+      <td><strong><%= calendar_appointment.name.to_s.truncate(12) %></strong></td>
+    </tr>
+    <tr>
+      <td>Phone:</td>
+      <td><%= calendar_appointment.phone.to_s.truncate(12) %></td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td><%= calendar_appointment.email.to_s.truncate(12) %></td>
+    </tr>
+  </table>
+</section>
