@@ -1,10 +1,12 @@
 class Calendar
+  include ActiveModel::Model
+
   attr_reader :unit
 
   def initialize(unit, first_sunday, options={})
     @unit         = Unit.where(id: unit.try(:id)).includes(:division, :recipients, :days => :appointments).first
     @first_sunday = first_sunday
-    @for_print    = options[:for_print]
+    @privacy      = options[:privacy]
   end
 
   delegate :coordinator_email, :to => :unit
@@ -18,7 +20,7 @@ class Calendar
   def weeks
     (0..2).map { |w|
       start_day = @first_sunday + w*7
-      CalendarWeek.new(start_day, @unit, @for_print)
+      CalendarWeek.new(start_day, @unit, @privacy)
     }
   end
 
@@ -33,7 +35,7 @@ class Calendar
   end
 end
 
-CalendarWeek = Struct.new(:start_date, :unit, :for_print?) do
+CalendarWeek = Struct.new(:start_date, :unit, :privacy?) do
   include ActiveModel::Conversion
 
   def days
@@ -43,8 +45,8 @@ CalendarWeek = Struct.new(:start_date, :unit, :for_print?) do
         appointment_data_hash = unit.appointment_data_for_date_and_recipient_number(date, i)
         CalendarAppointment.new(
           appointment_data_hash['name'],
-          for_print? ? appointment_data_hash['phone'] : nil,
-          for_print? ? appointment_data_hash['email'] : nil,
+          privacy? ? nil : appointment_data_hash['phone'],
+          privacy? ? nil : appointment_data_hash['email'],
           appointment_data_hash['css_class'],
           i)
       })

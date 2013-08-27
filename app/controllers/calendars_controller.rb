@@ -7,7 +7,7 @@ class CalendarsController < ApplicationController
   end
 
   def show
-    @calendar = Calendar.new(@unit, @first_sunday, for_print: params.has_key?(:print))
+    @calendar = Calendar.new(@unit, @first_sunday, privacy: !params.has_key?(:print))
   end
 
   private
