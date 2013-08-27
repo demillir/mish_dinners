@@ -29,8 +29,6 @@ class Unit < ActiveRecord::Base
     recipient.attributes.merge('number' => recipient_number)
   end
 
-  private
-
   def recipient_by_number(recipient_number)
     recipients.sort_by(&:id)[recipient_number-1]
   end
