@@ -1,6 +1,6 @@
 class Calendar
   def initialize(unit, first_sunday, options={})
-    @unit         = unit
+    @unit         = Unit.where(id: unit.try(:id)).includes(:division, :recipients, :days => :appointments).first
     @first_sunday = first_sunday
     @for_print    = options[:for_print]
   end
