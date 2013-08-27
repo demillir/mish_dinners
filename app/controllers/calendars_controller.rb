@@ -15,6 +15,7 @@ class CalendarsController < ApplicationController
   def set_unit
     division = Division.find_by_abbr(params[:division_abbr])
     @unit    = division.units.find_by_abbr(params[:unit_abbr])
+    raise ActiveRecord::RecordNotFound unless @unit
   end
 
   def set_first_sunday
