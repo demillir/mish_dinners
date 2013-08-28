@@ -13,7 +13,7 @@
       </tr>
       <tr>
         <td>Email:</td>
-        <td><%= af.text_field :email, :class => 'edit_input', :value => calendar_appointment.email, 'data-autocomplete-source' => :emails_list %></td>
+        <td><%= af.text_field :email, :class => 'edit_input', :value => calendar_appointment.email, 'data-autocomplete-source' => :emails_list, :type => :email %></td>
       </tr>
       <% Figaro.env.css_classes.split.each do |lbl| %>
         <tr>
