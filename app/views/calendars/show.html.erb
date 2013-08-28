@@ -2,10 +2,10 @@
   <h1><%= ENV['CALENDAR_TITLE'] %></h1>
 
   <p>
-    <%= @calendar.volunteer_pitch %>
+    <%= @calendar.volunteer_pitch.html_safe %>
   </p>
   <p>
-    <strong>Recommended time:</strong> <%= @calendar.meal_time %>.
+    <strong>Recommended time:</strong> <%= @calendar.meal_time.html_safe %>.
     Times are flexible.
     Questions? Send email to
     <%= @calendar.coordinator_email %>.

@@ -8,7 +8,7 @@ pitch = <<-EOS
       Include your email address to receive a reminder email two days before the dinner appointment.
       If a dinner slot has a "SACK" watermark, the meal should be a sack dinner delivered to the
       Portland Temple Visitors' Center.
-      "Thank you so much for your support!" --The Sisters
+      <strong>"Thank you so much for your support!"</strong> &hearts;The Sisters
 EOS
 
 unit = division.units.create!(abbr:              'lo',
