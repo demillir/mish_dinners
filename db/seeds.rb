@@ -4,16 +4,17 @@ division = Division.create!(abbr: 'lo')
 
 pitch = <<-EOS
       Please sign up to provide dinner for the missionaries serving in the Lake Oswego Ward.
-      You can sign up for one or both companionships on the same evening.
+      You may sign up for one or both companionships on the same evening.
       Include your email address to receive a reminder email two days before the dinner appointment.
       If a dinner slot has a "SACK" watermark, the meal should be a sack dinner delivered to the
       Portland Temple Visitors' Center.
+      "Thank you so much for your support!" --The Sisters
 EOS
 
 unit = division.units.create!(abbr:              'lo',
                               uuid:              '1bd97844-2bb1-4046-bbe8-d63f6411af46',
                               coordinator_email: 'LOmissionarymeals@gmail.com',
-                              meal_time:         '6pm for dinner in your home, 3-6pm for sack dinners.',
+                              meal_time:         '6pm for dinner in your home, 3-6pm for sack dinners',
                               volunteer_pitch:   pitch)
 
 companionship1 = unit.recipients.create!(phone: '503-490-3314')
