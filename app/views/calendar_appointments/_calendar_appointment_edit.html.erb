@@ -27,3 +27,9 @@
     </table>
   <% end %>
 </section>
+
+<% if recip_number == 1 %>
+  <div style='text-align: right;'>
+    <%= button_tag "Copy &darr;".html_safe, :type => :button, :class => 'copy-appointment-btn' %>
+  </div>
+<% end %>
