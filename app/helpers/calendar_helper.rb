@@ -7,4 +7,10 @@ module CalendarHelper
       text_str.truncate(truncate_at)
     end
   end
+
+  def edit_form_buttons
+    content_tag(:div, class: 'buttons') do
+      submit_tag("Save changes", class: "save_btn") +
+    end
+  end
 end

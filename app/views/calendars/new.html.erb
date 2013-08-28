@@ -2,9 +2,7 @@
              url: calendars_path(division_abbr: @calendar.division_abbr,
                                  unit_abbr:     @calendar.unit_abbr,
                                  uuid:          @calendar.unit_uuid) do |f| %>
-  <div class='buttons'>
-    <%= submit_tag "Save changes", class: "save_btn" %>
-  </div>
+  <%= edit_form_buttons %>
 
   <table class="calendar">
     <thead>
@@ -26,9 +24,7 @@
     </tbody>
   </table>
 
-  <div class='buttons'>
-    <%= submit_tag "Save changes", class: "save_btn" %>
-  </div>
+  <%= edit_form_buttons %>
 <% end %>
 
 <%= javascript_tag "var names_list  = #{@calendar.names_list};"  %>
