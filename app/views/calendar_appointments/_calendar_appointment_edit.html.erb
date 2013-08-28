@@ -1,6 +1,7 @@
 <section class="appointment <%= calendar_appointment.css_class %>" style="height: auto;">
-  <header class="recipient"><%= calendar_appointment.recipient_number %></header>
-  <%= f.fields_for calendar_appointment.recipient_number.to_s do |af| %>
+  <% recip_number = calendar_appointment.recipient_number %>
+  <header class="recipient"><%= recip_number %></header>
+  <%= f.fields_for recip_number.to_s do |af| %>
     <table>
       <tr>
         <td>Name:</td>
