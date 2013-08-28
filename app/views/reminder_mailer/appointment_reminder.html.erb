@@ -4,14 +4,28 @@
   <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
 </head>
 <body>
-<h1>Welcome to example.com, Dan</h1>
+
+<p>Hello,</p>
+
 <p>
-  You have successfully signed up to example.com,
-  your username is: none.<br/>
+  Thank you for signing up to provide <%= meal_name_with_indefinite_article(@appointment) %>
+  for <%= @recipients.size %> <%= Figaro.env.recipient_title.downcase.pluralize(@recipients.size) %>
+  on <%= l @appointment.date, format: :soon %>.
+  The recommended time is <%= @appointment.meal_time %>.
 </p>
+
 <p>
-  To login to the site, just follow this link: none.
+  You can reach the <%= Figaro.env.recipient_title.downcase.pluralize(@recipients.size) %>
+  at <%= @recipients.map(&:phone).find_all(&:present?).uniq.join(' and ') %>.
 </p>
-<p>Thanks for joining and have a great day!</p>
+
+<p>
+  You can view the sign-up calendar at <%= link_to nil, url_for("http://#{Figaro.env.app_domain}/#{@appointment.division_abbr}/#{@appointment.unit_abbr}") %>.
+</p>
+
+<p>Your act of service is greatly appreciated!</p>
+
+<p><%= @appointment.coordinator_name %><br/><%= mail_to @appointment.coordinator_email %></p>
+
 </body>
 </html>

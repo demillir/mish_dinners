@@ -3,8 +3,10 @@ class Unit < ActiveRecord::Base
   has_many   :recipients, :dependent => :destroy
   has_many   :days, :dependent => :destroy
 
-  validates :division, :presence => true
-  validates :abbr,     :uniqueness => {:scope => :division_id, :case_sensitive => false}
+  validates :division,          :presence => true
+  validates :abbr,              :uniqueness => {:scope => :division_id, :case_sensitive => false}
+  validates :coordinator_email, :presence => true
+  validates :coordinator_name,  :presence => true
 
   delegate :abbr, :to => :division, :prefix => true
 
