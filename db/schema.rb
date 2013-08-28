@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130828172645) do
+ActiveRecord::Schema.define(version: 20130828193247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20130828172645) do
     t.datetime "updated_at"
     t.string   "uuid"
     t.string   "reminder_subject"
+    t.string   "coordinator_name"
   end
 
   add_index "units", ["abbr"], name: "index_units_on_abbr", using: :btree

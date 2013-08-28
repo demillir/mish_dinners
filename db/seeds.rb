@@ -14,6 +14,7 @@ EOS
 unit = division.units.create!(abbr:              'lo',
                               uuid:              '1bd97844-2bb1-4046-bbe8-d63f6411af46',
                               coordinator_email: 'LOmissionarymeals@gmail.com',
+                              coordinator_name:  'Dawn Milliron',
                               meal_time:         '6pm for dinner in your home, 3-6pm for sack dinners',
                               reminder_subject:  '[Missionary Meal] Sign-up reminder',
                               volunteer_pitch:   pitch)
