@@ -3,15 +3,15 @@
   <table>
     <tr>
       <td>Name:</td>
-      <td><strong><%= calendar_appointment.name.to_s.truncate(12) %></strong></td>
+      <td><strong><%= calendar_appointment.name.to_s.truncate(15) %></strong></td>
     </tr>
     <tr>
       <td>Phone:</td>
-      <td><%= calendar_appointment.phone.to_s.truncate(12) %></td>
+      <td><%= calendar_appointment.phone.to_s.truncate(15) %></td>
     </tr>
     <tr>
       <td>Email:</td>
-      <td><%= calendar_appointment.email.to_s.truncate(12) %></td>
+      <td><%= calendar_appointment.email.to_s.truncate(15) %></td>
     </tr>
   </table>
 </section>
