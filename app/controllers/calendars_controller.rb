@@ -1,7 +1,7 @@
 class CalendarsController < ApplicationController
-  before_action :set_unit,         only: [:show, :new, :create]
-  before_action :authorize,        only: [:new, :create]
-  before_action :set_first_sunday, only: [:show, :new]
+  before_action :set_unit,         only: [:show, :edit, :update]
+  before_action :authorize,        only: [:edit, :update]
+  before_action :set_first_sunday, only: [:show, :edit]
 
   def index
     redirect_to '/lo/lo'
@@ -11,11 +11,11 @@ class CalendarsController < ApplicationController
     @calendar = Calendar.new(@unit, @first_sunday, privacy: !params.has_key?(:print))
   end
 
-  def new
+  def edit
     @calendar = Calendar.new(@unit, @first_sunday)
   end
 
-  def create
+  def update
     @calendar = PersistedCalendar.new(@unit, params[:calendar])
     @calendar.save
     redirect_to url_for("/#{@unit.division_abbr}/#{@unit.abbr}?print")

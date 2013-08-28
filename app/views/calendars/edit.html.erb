@@ -1,4 +1,5 @@
 <%= form_for @calendar,
+             method: :put,
              url: calendars_path(division_abbr: @calendar.division_abbr,
                                  unit_abbr:     @calendar.unit_abbr,
                                  uuid:          @calendar.unit_uuid) do |f| %>
