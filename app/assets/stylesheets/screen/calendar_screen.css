@@ -20,6 +20,18 @@ section.appointment td label {
   background: #cbebbc;
 }
 
+.ui-menu {
+  list-style: none;
+  border: 1px solid #222;
+  width: 90px;
+  background: #fffafc;
+  padding: 0 3px;
+}
+
+.ui-state-focus {
+  background: #ffb3c2;
+}
+
 div.buttons {
   text-align: center;
   margin: 20px;

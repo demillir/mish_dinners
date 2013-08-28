@@ -30,3 +30,7 @@
     <%= submit_tag "Save changes", class: "save_btn" %>
   </div>
 <% end %>
+
+<%= javascript_tag "var names_list  = #{@calendar.names_list};"  %>
+<%= javascript_tag "var phones_list = #{@calendar.phones_list};" %>
+<%= javascript_tag "var emails_list = #{@calendar.emails_list};" %>

@@ -5,15 +5,15 @@
     <table>
       <tr>
         <td>Name:</td>
-        <td><%= af.text_field :name, :class => 'edit_input', :value => calendar_appointment.name %></td>
+        <td><%= af.text_field :name, :class => 'edit_input', :value => calendar_appointment.name, 'data-autocomplete-source' => :names_list %></td>
       </tr>
       <tr>
         <td>Phone:</td>
-        <td><%= af.text_field :phone, :class => 'edit_input', :value => calendar_appointment.phone %></td>
+        <td><%= af.text_field :phone, :class => 'edit_input', :value => calendar_appointment.phone, 'data-autocomplete-source' => :phones_list %></td>
       </tr>
       <tr>
         <td>Email:</td>
-        <td><%= af.text_field :email, :class => 'edit_input', :value => calendar_appointment.email %></td>
+        <td><%= af.text_field :email, :class => 'edit_input', :value => calendar_appointment.email, 'data-autocomplete-source' => :emails_list %></td>
       </tr>
       <% Figaro.env.css_classes.split.each do |lbl| %>
         <tr>
