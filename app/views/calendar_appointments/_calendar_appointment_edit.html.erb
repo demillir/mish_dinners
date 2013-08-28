@@ -30,6 +30,9 @@
 
 <% if recip_number == 1 %>
   <div style='text-align: right;'>
-    <%= button_tag "Copy &darr;".html_safe, :type => :button, :class => 'copy-appointment-btn' %>
+    <%= button_tag "Copy &darr;".html_safe,
+                   :type => :button,
+                   :class => 'copy-appointment-btn',
+                   :title => 'Copy the sign-up above to the sign-up below' %>
   </div>
 <% end %>
