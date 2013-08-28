@@ -15,9 +15,13 @@ class Appointment < ActiveRecord::Base
   delegate :unit_abbr,         :to => :recipient
   delegate :date,              :to => :day
 
-  scope :similar_to, -> (appointment) {
+  scope :for_date, -> (date) {
     joins(:day)
-    .merge(Day.where(date: appointment.date))
+    .merge(Day.where(date: date))
+  }
+
+  scope :similar_to, -> (appointment) {
+    for_date(appointment.date)
     .where(name: appointment.name, css_class: appointment.css_class)
   }
 
