@@ -32,4 +32,22 @@ class Unit < ActiveRecord::Base
   def recipient_by_number(recipient_number)
     recipients.sort_by(&:id)[recipient_number-1]
   end
+
+  def names_list
+    column_list(:name)
+  end
+
+  def phones_list
+    column_list(:phone)
+  end
+
+  def emails_list
+    column_list(:email)
+  end
+
+  private
+
+  def column_list(column)
+    Appointment.joins(:day).where(:days => {:unit_id => self.id}).uniq.pluck(column).find_all(&:present?).sort
+  end
 end

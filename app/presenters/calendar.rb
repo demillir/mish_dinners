@@ -14,6 +14,9 @@ class Calendar
   delegate :volunteer_pitch,   :to => :unit
   delegate :division_abbr,     :to => :unit
   delegate :division_abbr,     :to => :unit
+  delegate :names_list,        :to => :unit
+  delegate :phones_list,       :to => :unit
+  delegate :emails_list,       :to => :unit
   delegate :abbr,              :to => :unit, :prefix => true
   delegate :uuid,              :to => :unit, :prefix => true
 
