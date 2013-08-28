@@ -48,6 +48,6 @@ class Unit < ActiveRecord::Base
   private
 
   def column_list(column)
-    Appointment.joins(:day).where(:days => {:unit_id => self.id}).uniq.pluck(column).find_all(&:present?).sort
+    Appointment.joins(:day).where(:days => {:unit_id => self.id}).order(column).uniq.pluck(column).find_all(&:present?)
   end
 end
