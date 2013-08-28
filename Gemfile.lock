@@ -42,6 +42,8 @@ GEM
       rails (>= 3, < 5)
     hike (1.2.3)
     i18n (0.6.5)
+    indefinite_article (0.2.0)
+      activesupport
     jbuilder (1.5.1)
       activesupport (>= 3.0.0)
       multi_json (>= 1.2.0)
@@ -122,6 +124,7 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 4.0.0)
   figaro
+  indefinite_article
   jbuilder (~> 1.2)
   jquery-rails
   jquery-ui-rails

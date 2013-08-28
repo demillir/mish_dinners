@@ -39,6 +39,7 @@ end
 gem 'rails_12factor', group: :production
 
 gem 'figaro'
+gem 'indefinite_article'
 gem 'newrelic_rpm'
 
 # Use ActiveModel has_secure_password
