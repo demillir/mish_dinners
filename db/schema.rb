@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130827154505) do
+ActiveRecord::Schema.define(version: 20130828160130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,9 @@ ActiveRecord::Schema.define(version: 20130827154505) do
   end
 
   add_index "appointments", ["day_id"], name: "index_appointments_on_day_id", using: :btree
+  add_index "appointments", ["email"], name: "index_appointments_on_email", using: :btree
+  add_index "appointments", ["name"], name: "index_appointments_on_name", using: :btree
+  add_index "appointments", ["phone"], name: "index_appointments_on_phone", using: :btree
   add_index "appointments", ["recipient_id"], name: "index_appointments_on_recipient_id", using: :btree
 
   create_table "days", force: true do |t|
@@ -44,6 +47,8 @@ ActiveRecord::Schema.define(version: 20130827154505) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "divisions", ["abbr"], name: "index_divisions_on_abbr", using: :btree
 
   create_table "recipients", force: true do |t|
     t.integer  "unit_id"
@@ -65,6 +70,7 @@ ActiveRecord::Schema.define(version: 20130827154505) do
     t.string   "uuid"
   end
 
+  add_index "units", ["abbr"], name: "index_units_on_abbr", using: :btree
   add_index "units", ["division_id"], name: "index_units_on_division_id", using: :btree
 
 end
