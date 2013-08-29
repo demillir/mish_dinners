@@ -26,9 +26,19 @@ class Meal < ActiveRecord::Base
       where(date: date)
   }
 
+  def self.css_class_for_type(type)
+    type_str = type.present? ? type : Figaro.env.meal_types.split.first
+    type_str.underscore.dasherize
+  end
+
   def recipients
     self.class.
       where(volunteer_id: self.volunteer_id, date: self.date, type: self.type).
       map(&:recipient)
+  end
+
+  # Returns something like "in-home" or "sack"
+  def css_class
+    Meal.css_class_for_type(type)
   end
 end

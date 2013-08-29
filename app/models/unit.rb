@@ -51,6 +51,6 @@ class Unit < ActiveRecord::Base
   private
 
   def column_list(column)
-    Appointment.joins(:day).merge(Day.where(:unit_id => self.id)).order(column).uniq.pluck(column).find_all(&:present?)
+    volunteers.map(&column).find_all(&:present?).uniq.sort
   end
 end

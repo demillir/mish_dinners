@@ -1,18 +1,18 @@
 class ReminderMailer < ActionMailer::Base
   helper :application
 
-  def appointment_reminder(appointment)
-    @appointment = appointment
-    return NullMail.new unless @appointment
-    return NullMail.new unless @appointment.email.present?
+  def appointment_reminder(meal)
+    @meal = meal
+    return NullMail.new unless @meal
+    return NullMail.new unless @meal.volunteer_email.present?
 
-    @recipients = @appointment.all_similar_recipients
-    return NullMail.new unless @recipients.present?
+    @meal_recipients = @meal.recipients
+    return NullMail.new unless @meal_recipients.present?
 
     mail(
-      to:      @appointment.email,
-      from:    @appointment.coordinator_email,
-      subject: @appointment.reminder_subject || 'Appointment reminder'
+      to:      @meal.volunteer_email,
+      from:    @meal.coordinator_email,
+      subject: @meal.reminder_subject || 'Appointment reminder'
     )
   end
 end
