@@ -19,10 +19,10 @@
   <h1><%= ENV['CALENDAR_TITLE'] %></h1>
 
   <p>
-    <%= raw(@calendar.volunteer_pitch) %>
+    <%= sanitize(@calendar.volunteer_pitch) %>
   </p>
   <p>
-    Preferred time: <%= raw(@calendar.meal_time) %>.
+    Preferred time: <%= sanitize(@calendar.meal_time) %>.
     Times are flexible.
     Questions? Email
     <%= @calendar.coordinator_email %>.
