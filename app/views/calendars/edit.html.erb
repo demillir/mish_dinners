@@ -14,7 +14,7 @@
                                  uuid:          @calendar.unit_uuid) do |f| %>
   <%= link_to 'Settings', edit_setting_path(@calendar.id, :uuid => @calendar.unit_uuid), :style => 'float: right; font-size: larger;' %>
 
-  <%= edit_form_buttons %>
+  <%= edit_form_buttons(@calendar) %>
 
   <table class="calendar">
     <thead>
@@ -36,7 +36,7 @@
     </tbody>
   </table>
 
-  <%= edit_form_buttons %>
+  <%= edit_form_buttons(@calendar) %>
 <% end %>
 
 <%= javascript_tag "var names_list  = #{@calendar.names_list};"  %>
