@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130828193247) do
+ActiveRecord::Schema.define(version: 20130829004033) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -50,6 +50,18 @@ ActiveRecord::Schema.define(version: 20130828193247) do
 
   add_index "divisions", ["abbr"], name: "index_divisions_on_abbr", using: :btree
 
+  create_table "meals", force: true do |t|
+    t.string   "type"
+    t.integer  "volunteer_id"
+    t.integer  "recipient_id"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "meals", ["recipient_id"], name: "index_meals_on_recipient_id", using: :btree
+  add_index "meals", ["volunteer_id"], name: "index_meals_on_volunteer_id", using: :btree
+
   create_table "recipients", force: true do |t|
     t.integer  "unit_id"
     t.string   "phone"
@@ -74,5 +86,19 @@ ActiveRecord::Schema.define(version: 20130828193247) do
 
   add_index "units", ["abbr"], name: "index_units_on_abbr", using: :btree
   add_index "units", ["division_id"], name: "index_units_on_division_id", using: :btree
+
+  create_table "volunteers", force: true do |t|
+    t.integer  "unit_id"
+    t.string   "name"
+    t.string   "phone"
+    t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "volunteers", ["unit_id", "email"], name: "index_volunteers_on_unit_id_and_email", using: :btree
+  add_index "volunteers", ["unit_id", "name"], name: "index_volunteers_on_unit_id_and_name", using: :btree
+  add_index "volunteers", ["unit_id", "phone"], name: "index_volunteers_on_unit_id_and_phone", using: :btree
+  add_index "volunteers", ["unit_id"], name: "index_volunteers_on_unit_id", using: :btree
 
 end

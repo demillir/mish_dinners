@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  volunteer_id:
+  recipient_id:
+  date: 2013-08-28
+  type: MyString
+
+two:
+  volunteer_id: 
+  recipient_id:
+  date: 2013-08-28
+  type: MyString

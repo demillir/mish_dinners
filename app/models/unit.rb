@@ -1,6 +1,7 @@
 class Unit < ActiveRecord::Base
   belongs_to :division
   has_many   :recipients, :dependent => :destroy
+  has_many   :volunteers, :dependent => :destroy
   has_many   :days, :dependent => :destroy
 
   validates :division,          :presence => true
