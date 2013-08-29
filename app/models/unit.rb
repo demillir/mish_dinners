@@ -51,6 +51,6 @@ class Unit < ActiveRecord::Base
   private
 
   def column_list(column)
-    volunteers.map(&column).find_all(&:present?).uniq.sort
+    volunteers.map(&column).find_all(&:present?).map(&:strip).uniq.sort
   end
 end
