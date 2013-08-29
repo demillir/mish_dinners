@@ -16,6 +16,6 @@ class Unit < ActiveRecord::Base
 
   # Recipient numbers are 1-based.
   def recipient_by_number(recipient_number)
-    recipients.sort_by(&:id)[recipient_number-1]
+    recipients.sort_by(&:id)[recipient_number.to_i-1]
   end
 end
