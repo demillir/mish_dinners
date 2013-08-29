@@ -5,7 +5,7 @@ AttributeNormalizer.configure do |config|
       normalized_phone = value.gsub(/\D/, '')
       if normalized_phone.length == 10
         "#{normalized_phone[0, 3]}-#{normalized_phone[3, 3]}-#{normalized_phone[6, 4]}"
-      elsif value.empty?
+      elsif value.blank?
         nil
       else
         value
