@@ -75,7 +75,8 @@ CalendarWeek = Struct.new(:start_date, :unit, :privacy) do
   def days
     (0..6).map { |d|
       date = start_date + d
-      appointments = (1..2).map { |recipient_number|
+      number_of_appointments = unit.number_of_recipients
+      appointments = (1..number_of_appointments).map { |recipient_number|
         make_appointment(unit, recipient_number, date, privacy)
       }
       CalendarDay.new(date, appointments)
