@@ -9,12 +9,14 @@ class PersistedCalendar
       appointments_hash.each do |recipient_number_str, appt_attrs|
         normalized_attrs = normalize_volunteer_attributes(appt_attrs)
         volunteer = @unit.volunteers.where(normalized_attrs).first_or_create!
+
+        meal_type = appt_attrs['type'].underscore.classify
+
         recipient = @unit.recipient_by_number(recipient_number_str.to_i)
         recipient.meals.
           where(date: date_str).
           first_or_initialize.
-          update_attributes(type:      appt_attrs['type'].underscore.classify,
-                            volunteer: volunteer)
+          update_attributes(volunteer: volunteer, type: meal_type)
       end
     end
 
