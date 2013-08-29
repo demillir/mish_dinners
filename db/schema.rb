@@ -11,36 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130829004033) do
+ActiveRecord::Schema.define(version: 20130829062624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "appointments", force: true do |t|
-    t.integer  "day_id"
-    t.integer  "recipient_id"
-    t.string   "name"
-    t.string   "phone"
-    t.string   "email"
-    t.string   "css_class"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "appointments", ["day_id"], name: "index_appointments_on_day_id", using: :btree
-  add_index "appointments", ["email"], name: "index_appointments_on_email", using: :btree
-  add_index "appointments", ["name"], name: "index_appointments_on_name", using: :btree
-  add_index "appointments", ["phone"], name: "index_appointments_on_phone", using: :btree
-  add_index "appointments", ["recipient_id"], name: "index_appointments_on_recipient_id", using: :btree
-
-  create_table "days", force: true do |t|
-    t.integer  "unit_id"
-    t.date     "date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "days", ["unit_id"], name: "index_days_on_unit_id", using: :btree
 
   create_table "divisions", force: true do |t|
     t.string   "abbr"
