@@ -92,6 +92,8 @@ CalendarWeek = Struct.new(:start_date, :unit, :privacy) do
 
   def appointment_data_for_date_and_recipient_number(unit, date, recipient_number)
     meal = unit.recipient_by_number(recipient_number).meals.find { |meal| meal.date == date }
+    return {} unless meal
+
     meal.volunteer.attributes.merge('type' => meal.type, 'css_class' => meal.css_class)
   end
 end
