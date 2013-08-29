@@ -18,9 +18,6 @@ class Calendar
   delegate :volunteer_pitch,   :to => :unit
   delegate :division_abbr,     :to => :unit
   delegate :division_abbr,     :to => :unit
-  delegate :names_list,        :to => :unit
-  delegate :phones_list,       :to => :unit
-  delegate :emails_list,       :to => :unit
   delegate :abbr,              :to => :unit, :prefix => true
   delegate :uuid,              :to => :unit, :prefix => true
 
@@ -41,7 +38,23 @@ class Calendar
     }
   end
 
+  def names_list
+    column_list(:name)
+  end
+
+  def phones_list
+    column_list(:phone)
+  end
+
+  def emails_list
+    column_list(:email)
+  end
+
   private
+
+  def column_list(column)
+    @unit.volunteers.map(&column).find_all(&:present?).uniq.sort
+  end
 
   def recipient_data_for_recipient_number(unit, recipient_number)
     recipient = unit.recipient_by_number(recipient_number)
