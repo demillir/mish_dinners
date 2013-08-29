@@ -1,10 +1,10 @@
 class Recipient < ActiveRecord::Base
-  include NormalizesPhone
-
   belongs_to :unit
   has_many   :meals, :dependent => :destroy
 
   validates :unit, :presence => true
+
+  normalize_attribute :phone, with: :dashed_phone
 
   delegate :coordinator_email, :to => :unit
   delegate :coordinator_name,  :to => :unit

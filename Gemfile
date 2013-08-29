@@ -38,6 +38,7 @@ end
 # Heroku gems
 gem 'rails_12factor', group: :production
 
+gem 'attribute_normalizer'
 gem 'figaro'
 gem 'indefinite_article'
 gem 'newrelic_rpm'

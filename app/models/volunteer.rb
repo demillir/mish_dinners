@@ -1,10 +1,10 @@
 class Volunteer < ActiveRecord::Base
-  include NormalizesPhone
-
   belongs_to :unit
   has_many   :meals, :dependent => :destroy
 
   validates :unit, :presence => true
+
+  normalize_attribute :phone, with: :dashed_phone
 
   scope :having_email, -> {
     where.not(email: nil).
