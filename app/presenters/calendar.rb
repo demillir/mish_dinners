@@ -4,7 +4,11 @@ class Calendar
   attr_reader :unit
 
   def initialize(unit, first_sunday, options={})
-    @unit         = Unit.where(id: unit.try(:id)).includes(:division, :recipients, :days => :appointments).first
+    @unit = Unit.where(id: unit.try(:id)).
+      includes(:division, recipients: {meals: :volunteer}).
+      where(meals: {date: (first_sunday...first_sunday+21)}).
+      first
+
     @first_sunday = first_sunday
     @privacy      = options[:privacy]
   end
@@ -29,31 +33,48 @@ class Calendar
 
   def recipients
     (1..@unit.number_of_recipients).map { |i|
-      recipient_data_hash = @unit.recipient_data_for_recipient_number(i)
+      recipient_data_hash = recipient_data_for_recipient_number(@unit, i)
       CalendarRecipient.new(
         recipient_data_hash['number'],
         recipient_data_hash['phone']
       )
     }
   end
+
+  private
+
+  def recipient_data_for_recipient_number(unit, recipient_number)
+    recipient = unit.recipient_by_number(recipient_number)
+    return {} unless recipient
+
+    recipient.attributes.merge('number' => recipient_number)
+  end
 end
 
-CalendarWeek = Struct.new(:start_date, :unit, :privacy?) do
+CalendarWeek = Struct.new(:start_date, :unit, :privacy) do
   include ActiveModel::Conversion
 
   def days
     (0..6).map { |d|
       date = start_date + d
       CalendarDay.new(date, (1..2).map { |i|
-        appointment_data_hash = unit.appointment_data_for_date_and_recipient_number(date, i)
+        appointment_data_hash = appointment_data_for_date_and_recipient_number(unit, date, i)
         CalendarAppointment.new(
           appointment_data_hash['name'],
-          privacy? ? nil : appointment_data_hash['phone'],
-          privacy? ? nil : appointment_data_hash['email'],
+          privacy ? nil : appointment_data_hash['phone'],
+          privacy ? nil : appointment_data_hash['email'],
+          appointment_data_hash['type'],
           appointment_data_hash['css_class'],
           i)
       })
     }
+  end
+
+  private
+
+  def appointment_data_for_date_and_recipient_number(unit, date, recipient_number)
+    meal = unit.recipient_by_number(recipient_number).meals.find { |meal| meal.date == date }
+    meal.volunteer.attributes.merge('type' => meal.type, 'css_class' => meal.css_class)
   end
 end
 
@@ -61,13 +82,8 @@ CalendarDay = Struct.new(:date, :appointments) do
   include ActiveModel::Conversion
 end
 
-CalendarAppointment = Struct.new(:name, :phone, :email, :css_class, :recipient_number) do
+CalendarAppointment = Struct.new(:name, :phone, :email, :type, :css_class, :recipient_number) do
   include ActiveModel::Conversion
-
-  def css_class_with_default
-    css_class_without_default || Figaro.env.css_classes.split.first
-  end
-  alias_method_chain :css_class, :default
 end
 
 CalendarRecipient = Struct.new(:number, :phone) do

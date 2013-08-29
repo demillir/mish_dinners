@@ -1,6 +1,7 @@
 class Unit < ActiveRecord::Base
   belongs_to :division
   has_many   :recipients, :dependent => :destroy
+  has_many   :volunteers, :dependent => :destroy
   has_many   :days, :dependent => :destroy
 
   validates :division,          :presence => true
@@ -50,6 +51,6 @@ class Unit < ActiveRecord::Base
   private
 
   def column_list(column)
-    Appointment.joins(:day).merge(Day.where(:unit_id => self.id)).order(column).uniq.pluck(column).find_all(&:present?)
+    volunteers.map(&column).find_all(&:present?).uniq.sort
   end
 end

@@ -15,12 +15,13 @@
         <td>Email:</td>
         <td><%= af.text_field :email, :class => 'edit_input', :value => calendar_appointment.email, 'data-autocomplete-source' => :emails_list, :type => :email %></td>
       </tr>
-      <% Figaro.env.css_classes.split.each do |lbl| %>
+      <% Figaro.env.meal_types.split.each do |meal_type| %>
+        <% lbl = Meal.css_class_for_type(meal_type) %>
         <tr>
           <td></td>
           <td class="class-selection">
-            <%= af.radio_button :css_class, lbl, checked: (calendar_appointment.css_class == lbl) %>
-            <%= af.label "css_class_#{lbl}", lbl.truncate(9) %>
+            <%= af.radio_button :type, lbl, checked: (calendar_appointment.type == meal_type) %>
+            <%= af.label "type_#{lbl}", lbl.truncate(9) %>
           </td>
         </tr>
       <% end %>
