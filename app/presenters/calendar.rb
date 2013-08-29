@@ -16,9 +16,10 @@ class Calendar
   delegate :uuid,              :to => :unit, :prefix => true
 
   def initialize(unit, first_sunday, options={})
+    # Eager load all of the records we need for the given unit's calendar.
     num_days_to_display = 7 * NUM_WEEKS_TO_DISPLAY
     @unit = Unit.where(id: unit.try(:id)).
-      includes(:division, recipients: {meals: :volunteer}).
+      includes(:division, :volunteers, recipients: {meals: :volunteer}).
       where(meals: {date: (first_sunday...first_sunday+num_days_to_display)}).
       first
 
