@@ -11,7 +11,7 @@ module CalendarHelper
   def edit_form_buttons
     content_tag(:div, class: 'buttons') do
       submit_tag("Save changes", class: "save_btn") +
-      link_to_function('Cancel', 'location.reload(true)', class: "cancel_btn")
+      link_to('Cancel', '#', class: "cancel_btn")
     end
   end
 end
