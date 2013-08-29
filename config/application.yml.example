@@ -2,7 +2,7 @@
 CALENDAR_TITLE:  Veteran Lunch Calendar
 
 # The phrase for referring to meal recipients.  Should be titleized.
-RECIPIENT_TITLE: Veteran
+RECIPIENT_TITLE: Veterans Group
 
 # The meal being scheduled.  Could be "dinner", "breakfast", "brunch", "supper", or whatever.
 # Should be lowercase.
