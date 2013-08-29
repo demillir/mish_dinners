@@ -4,3 +4,105 @@
  *= require calendar
  *= require_tree ./screen
  */
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  margin-bottom: 0px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+.flash {
+  text-align: center;
+  padding:	.3em .4em;
+  margin:		0 auto .5em;
+  clear:		both;
+  max-width:	46.923em; /* 610/13 */
+  *max-width:	45.750em; /* 610/13.3333 - for IE */
+}
+
+.flash.error {
+  border: thin solid #8b0000;
+  background: #ffc0cb;
+}
+
+.flash.notice, .flash.info {
+  border: thin solid #ff0;
+  background: #ff3;
+}
+
+.flash.warning {
+  border: thin solid #b8860b;
+  background: #ff0;
+}
+
+.flash .close {
+  float:	right;
+}
+
+.flash .close a {
+  color:				#f00;
+  text-decoration:	none;
+}
+
+form.settings {
+  margin-top: 20px;
+}
+
+form.settings label {
+  display: inline-block;
+  width: 150px;
+  text-align: right;
+  padding-right: 1em;
+  font-size: 12px;
+  vertical-align: top;
+}
+
+form.settings div.input {
+  margin: 1em 0;
+}
+
+form.settings div.actions a {
+  font-size: 14px;
+  margin: 0 1em;
+}
+
+form.settings textarea {
+  width: 600px;
+  height: 120px;
+}
+
+form.settings .hint {
+  font-style: italic;
+  font-size: 11px;
+  vertical-align: top;
+  padding-left: 0.5em;
+}
