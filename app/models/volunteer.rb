@@ -7,8 +7,7 @@ class Volunteer < ActiveRecord::Base
   normalize_attribute :phone, with: :dashed_phone
 
   scope :having_email, -> {
-    where.not(email: nil).
-      where.not(email: '')
+    where.not(email: nil)
   }
 
   scope :having_no_meals, -> {
