@@ -1,0 +1,20 @@
+<%= simple_form_for @settings,
+                    method: :put,
+                    url:    setting_path(@settings, uuid: @settings.unit_uuid) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :volunteer_pitch, as: :text, hint: 'HTML tags allowed' %>
+  <%= f.input :meal_time, hint: 'HTML tags allowed' %>
+  <%= f.input :reminder_subject, label: 'Reminder email subject' %>
+  <%= f.input :coordinator_name %>
+  <%= f.input :coordinator_email %>
+
+  <% (1..@settings.number_of_recipients).each do |recipient_number| %>
+    <%= f.input "recipient#{recipient_number}_phone", label: "#{recipient_label(recipient_number)} phone" %>
+  <% end %>
+
+  <div class="actions">
+    <%= f.button :submit, "Save" %>
+    <%= link_to 'Cancel', url_for("/#{@unit.division_abbr}/#{@unit.abbr}/#{@unit.uuid}") %>
+  </div>
+<% end %>

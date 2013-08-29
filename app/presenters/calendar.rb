@@ -11,6 +11,7 @@ class Calendar
 
   attr_reader :unit
 
+  delegate :id,                :to => :unit
   delegate :coordinator_email, :to => :unit
   delegate :meal_time,         :to => :unit
   delegate :volunteer_pitch,   :to => :unit
