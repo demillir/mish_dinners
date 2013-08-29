@@ -1,6 +1,10 @@
 class Calendar
   include ActiveModel::Model
 
+  # If you change the number of weeks, you'll need to tweak all of the CSS heights to make the
+  # calendar print on one sheet.
+  NUM_WEEKS_TO_DISPLAY = 3
+
   attr_reader :unit
 
   delegate :coordinator_email, :to => :unit
@@ -12,9 +16,10 @@ class Calendar
   delegate :uuid,              :to => :unit, :prefix => true
 
   def initialize(unit, first_sunday, options={})
+    num_days_to_display = 7 * NUM_WEEKS_TO_DISPLAY
     @unit = Unit.where(id: unit.try(:id)).
       includes(:division, recipients: {meals: :volunteer}).
-      where(meals: {date: (first_sunday...first_sunday+21)}).
+      where(meals: {date: (first_sunday...first_sunday+num_days_to_display)}).
       first
 
     @first_sunday = first_sunday
@@ -22,7 +27,7 @@ class Calendar
   end
 
   def weeks
-    (0..2).map { |w|
+    (0...NUM_WEEKS_TO_DISPLAY).map { |w|
       start_day = @first_sunday + w*7
       CalendarWeek.new(start_day, @unit, @privacy)
     }
