@@ -1,16 +1,32 @@
-CALENDAR_TITLE:  Volunteer Lunch Calendar
-RECIPIENT_TITLE: Homeless Person
+# This title will appear at the top of all calendar displays.
+CALENDAR_TITLE:  Veteran Lunch Calendar
+
+# The phrase for referring to meal recipients.  Should be titleized.
+RECIPIENT_TITLE: Veteran
+
+# The meal being scheduled.  Could be "dinner", "breakfast", "brunch", "supper", or whatever.
+# Should be lowercase.
 MEAL_NAME:       lunch
+
+# List of camelcase names of the various ways a meal could be served.
+# Each meal will have one of these types.  The default type for a meal is the first type from this list.
+# When displayed, a meal will have a CSS class derived from its type (by converting the camelcase to dasherized).
+# For example, if a meal has type "InHome", then it will be displayed with CSS class "in-home".
 MEAL_TYPES:      InHome Sack
 
+# The Internet domain where this scheduling app is served.
+APP_DOMAIN:      your.app.com
+
+# This app sends email via a third-party service.  The service's configuration parameters are listed here.
+# This example shows parameters for the MailGun service, but your application can use whatever service you want.
+# Be sure to set the config.action_mailier settings in config/environments/*.rb as well.
 MAILGUN_API_KEY:             key-foozle
 MAILGUN_SMTP_LOGIN:          postmaster@app000.mailgun.org
 MAILGUN_SMTP_PASSWORD:       befozzle
 MAILGUN_SMTP_PORT:           587
 MAILGUN_SMTP_SERVER:         smtp.mailgun.org
 
-APP_DOMAIN:          your.app.com
-
+# The config/database.yml file needs to know the parameters for you Postgres databases.
 development:
   DATABASE_NAME: your_app_development
   DATABASE_USER: your_app
