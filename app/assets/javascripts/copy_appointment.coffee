@@ -6,6 +6,6 @@ $ ->
       copy_appointment(src, dst)
 
 copy_appointment = (src, dst) ->
-  values = (field.value for field in $(src).find('input[type=text]'))
-  for field, i in $(dst).find('input[type=text]')
+  values = (field.value for field in $(src).find('input[type="text"], input[type="email"]'))
+  for field, i in $(dst).find('input[type="text"], input[type="email"]')
     field.value = values[i]
