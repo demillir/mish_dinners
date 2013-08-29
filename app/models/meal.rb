@@ -38,6 +38,11 @@ class Meal < ActiveRecord::Base
     Meal.css_class_for_type(type)
   end
 
+  # The default meal type is the first type in the application's list of meal types.
+  def type
+    read_attribute(:type) || Figaro.env.meal_types.split.first
+  end
+
   # Returns a complete list of all the recipients receiving the same meal from the volunteer,
   # including this meal's recipient.
   def recipients
