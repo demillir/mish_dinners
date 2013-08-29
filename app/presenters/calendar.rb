@@ -38,7 +38,7 @@ class Calendar
   end
 end
 
-CalendarWeek = Struct.new(:start_date, :unit, :privacy?) do
+CalendarWeek = Struct.new(:start_date, :unit, :privacy) do
   include ActiveModel::Conversion
 
   def days
@@ -48,8 +48,8 @@ CalendarWeek = Struct.new(:start_date, :unit, :privacy?) do
         appointment_data_hash = unit.appointment_data_for_date_and_recipient_number(date, i)
         CalendarAppointment.new(
           appointment_data_hash['name'],
-          privacy? ? nil : appointment_data_hash['phone'],
-          privacy? ? nil : appointment_data_hash['email'],
+          privacy ? nil : appointment_data_hash['phone'],
+          privacy ? nil : appointment_data_hash['email'],
           appointment_data_hash['css_class'],
           i)
       })
