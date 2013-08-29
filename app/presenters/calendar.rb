@@ -3,6 +3,14 @@ class Calendar
 
   attr_reader :unit
 
+  delegate :coordinator_email, :to => :unit
+  delegate :meal_time,         :to => :unit
+  delegate :volunteer_pitch,   :to => :unit
+  delegate :division_abbr,     :to => :unit
+  delegate :division_abbr,     :to => :unit
+  delegate :abbr,              :to => :unit, :prefix => true
+  delegate :uuid,              :to => :unit, :prefix => true
+
   def initialize(unit, first_sunday, options={})
     @unit = Unit.where(id: unit.try(:id)).
       includes(:division, recipients: {meals: :volunteer}).
@@ -12,14 +20,6 @@ class Calendar
     @first_sunday = first_sunday
     @privacy      = options[:privacy]
   end
-
-  delegate :coordinator_email, :to => :unit
-  delegate :meal_time,         :to => :unit
-  delegate :volunteer_pitch,   :to => :unit
-  delegate :division_abbr,     :to => :unit
-  delegate :division_abbr,     :to => :unit
-  delegate :abbr,              :to => :unit, :prefix => true
-  delegate :uuid,              :to => :unit, :prefix => true
 
   def weeks
     (0..2).map { |w|
