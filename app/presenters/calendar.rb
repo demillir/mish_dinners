@@ -1,3 +1,7 @@
+# This file defines several related classes that convert the Unit, Recipient, Volunteer, and Meal records
+# for a calendar period into Calendar, CalendarWeek, CalendarDay, CalendarAppointment, and CalendarRecipient
+# objects for use by the application's view layer.
+
 class Calendar
   include ActiveModel::Model
 

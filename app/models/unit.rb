@@ -14,6 +14,7 @@ class Unit < ActiveRecord::Base
     recipients.size
   end
 
+  # Recipient numbers are 1-based.
   def recipient_by_number(recipient_number)
     recipients.sort_by(&:id)[recipient_number-1]
   end

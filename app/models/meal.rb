@@ -26,19 +26,23 @@ class Meal < ActiveRecord::Base
       where(date: date)
   }
 
+  # Formats the given camelcase meal type, e.g. "InHome", as a CSS class, e.g. "in-home".
+  # If the given meal type is blank, the type defaults to the first type in the application's list of meal types.
   def self.css_class_for_type(type)
     type_str = type.present? ? type : Figaro.env.meal_types.split.first
     type_str.underscore.dasherize
   end
 
+  # Returns something like "in-home" or "sack"
+  def css_class
+    Meal.css_class_for_type(type)
+  end
+
+  # Returns a complete list of all the recipients receiving the same meal from the volunteer,
+  # including this meal's recipient.
   def recipients
     self.class.
       where(volunteer_id: self.volunteer_id, date: self.date, type: self.type).
       map(&:recipient)
-  end
-
-  # Returns something like "in-home" or "sack"
-  def css_class
-    Meal.css_class_for_type(type)
   end
 end

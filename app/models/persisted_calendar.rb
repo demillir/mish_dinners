@@ -1,3 +1,6 @@
+# Objects from this class take a hash table of incoming calendar data (from the calendar edit web page)
+# and stuff the calendar data into the appropriate Volunteer and Meal database records.
+
 class PersistedCalendar
   def initialize(unit, params)
     @unit   = unit
@@ -7,11 +10,14 @@ class PersistedCalendar
   def save
     @params.each do |date_str, appointments_hash|
       appointments_hash.each do |recipient_number_str, appt_attrs|
+        # Find or create a matching Volunteer record
         normalized_attrs = normalize_volunteer_attributes(appt_attrs)
         volunteer = @unit.volunteers.where(normalized_attrs).first_or_create!
 
+        # The meal type is the camelcase version of the appointment's type
         meal_type = appt_attrs['type'].underscore.classify
 
+        # Find or create a matching Meal record, and give it the Volunteer and meal type.
         recipient = @unit.recipient_by_number(recipient_number_str.to_i)
         recipient.meals.
           where(date: date_str).
