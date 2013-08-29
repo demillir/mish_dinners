@@ -14,7 +14,7 @@ unit = division.units.create!(abbr:              'un',
                               uuid:              '3f9a82e0-ffad-423d-862f-46141ad26d8d',
                               coordinator_email: 'feedinghomeless@gmail.com',
                               coordinator_name:  'Jane Doe',
-                              meal_time:         '6pm for dinner in your home, 3-6pm for sack dinners',
+                              meal_time:         '<strong>6:00 PM for in-home dinners, 3:00-6:00 PM for sack dinners</strong>',
                               reminder_subject:  '[Volunteer Meal] Sign-up reminder',
                               volunteer_pitch:   pitch)
 
