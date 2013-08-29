@@ -11,7 +11,7 @@
   Thank you for signing up to provide <%= meal_name_with_indefinite_article(@meal) %>
   for <%= @meal_recipients.size %> <%= Figaro.env.recipient_title.downcase.pluralize(@meal_recipients.size) %>
   on <%= l @meal.date, format: :soon %>.
-  The recommended time is <%= @meal.meal_time %>.
+  The preferred time is <%= @meal.meal_time %>.
 </p>
 
 <p>
