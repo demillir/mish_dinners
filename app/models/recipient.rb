@@ -3,8 +3,6 @@ class Recipient < ActiveRecord::Base
 
   belongs_to :unit
   has_many   :meals, :dependent => :destroy
-  has_many   :appointments, :dependent => :destroy
-  has_many   :days, :through => :appointments
 
   validates :unit, :presence => true
 
