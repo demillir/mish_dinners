@@ -75,20 +75,25 @@ CalendarWeek = Struct.new(:start_date, :unit, :privacy) do
   def days
     (0..6).map { |d|
       date = start_date + d
-      CalendarDay.new(date, (1..2).map { |i|
-        appointment_data_hash = appointment_data_for_date_and_recipient_number(unit, date, i)
-        CalendarAppointment.new(
-          appointment_data_hash['name'],
-          privacy ? nil : appointment_data_hash['phone'],
-          privacy ? nil : appointment_data_hash['email'],
-          appointment_data_hash['type'],
-          appointment_data_hash['css_class'],
-          i)
-      })
+      appointments = (1..2).map { |recipient_number|
+        make_appointment(unit, recipient_number, date, privacy)
+      }
+      CalendarDay.new(date, appointments)
     }
   end
 
   private
+
+  def make_appointment(unit, recipient_number, date, privacy)
+    appointment_data_hash = appointment_data_for_date_and_recipient_number(unit, date, recipient_number)
+    CalendarAppointment.new(
+      appointment_data_hash['name'],
+      privacy ? nil : appointment_data_hash['phone'],
+      privacy ? nil : appointment_data_hash['email'],
+      appointment_data_hash['type'],
+      appointment_data_hash['css_class'],
+      recipient_number)
+  end
 
   def appointment_data_for_date_and_recipient_number(unit, date, recipient_number)
     meal = unit.recipient_by_number(recipient_number).meals.find { |meal| meal.date == date }
