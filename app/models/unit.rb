@@ -11,7 +11,7 @@ class Unit < ActiveRecord::Base
   delegate :abbr, :to => :division, :prefix => true
 
   def number_of_recipients
-    @number_of_recipients ||= recipients.size
+    recipients.size
   end
 
   def recipient_by_number(recipient_number)
