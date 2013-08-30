@@ -1,9 +1,9 @@
 <h1>
   <%= link_to adjacent_calendar_path(@calendar, -1), class: 'left screen-only' do %>
-    <button type='button'>&lArr;</button>
+    <input type="button" value="&lArr;" />
   <% end %>
   <%= ENV['CALENDAR_TITLE'] %>, <%= calendar_range(@calendar) %>
   <%= link_to adjacent_calendar_path(@calendar,  1), class: 'right screen-only' do %>
-    <button type='button'>&rArr;</button>
+    <input type="button" value="&rArr;" />
   <% end %>
 </h1>

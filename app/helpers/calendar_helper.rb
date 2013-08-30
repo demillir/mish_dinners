@@ -29,7 +29,7 @@ module CalendarHelper
     days_in_calendar = calendar.end_date - calendar.start_date + 1
     new_calendar_start_date = calendar.start_date + (multiplier * days_in_calendar)
 
-    uri = URI(request.original_url)
+    uri = URI(request.original_fullpath)
     date_query = {date: new_calendar_start_date}.to_query
     if uri.query.blank?
       uri.query = date_query
