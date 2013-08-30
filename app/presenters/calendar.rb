@@ -42,6 +42,14 @@ class Calendar
     @privacy      = options[:privacy]
   end
 
+  def start_date
+    weeks.first.days.first.date
+  end
+
+  def end_date
+    weeks.last.days.last.date
+  end
+
   def weeks
     (0...@num_weeks_to_display).map { |w|
       start_day = @first_sunday + w*7

@@ -16,7 +16,7 @@
     </p>
   </section>
 
-  <h1><%= ENV['CALENDAR_TITLE'] %></h1>
+  <h1><%= ENV['CALENDAR_TITLE'] %>, <%= calendar_range(@calendar) %></h1>
 
   <p>
     <%= sanitize(@calendar.volunteer_pitch) %>
