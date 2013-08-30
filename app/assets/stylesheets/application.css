@@ -78,6 +78,11 @@ form.settings {
 }
 
 form.settings label {
+  position: relative;
+  top: 2px;
+}
+
+form.settings div.input > label {
   display: inline-block;
   width: 150px;
   text-align: right;
