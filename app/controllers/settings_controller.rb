@@ -35,6 +35,7 @@ class SettingsController < ApplicationController
              :meal_time,
              :volunteer_pitch,
              :reminder_subject,
-             *((1..20).map {|i| "recipient#{i}_phone"}))
+             :number_of_recipients,
+             *((1..3).map {|i| "recipient#{i}_phone"}))
   end
 end

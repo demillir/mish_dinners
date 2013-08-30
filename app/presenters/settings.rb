@@ -8,6 +8,7 @@ class Settings
   delegate :uuid,                 :to => :unit, :prefix => true
   delegate :to_param,             :to => :unit
   delegate :number_of_recipients, :to => :unit
+  delegate :number_of_recipients=,:to => :unit
   delegate :coordinator_name,     :to => :unit
   delegate :coordinator_name=,    :to => :unit
   delegate :coordinator_email,    :to => :unit
@@ -27,6 +28,12 @@ class Settings
   end
 
   def update(values, options = {})
+    # Update the number of recipients first, so that any new recipients are available to accept their attributes.
+    if values['number_of_recipients']
+      unit.number_of_recipients = values['number_of_recipients']
+      unit.reload
+    end
+
     values.each do |k, v|
       send("#{k}=", v)
     end
