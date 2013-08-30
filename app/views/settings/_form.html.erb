@@ -9,9 +9,25 @@
   <%= f.input :coordinator_name %>
   <%= f.input :coordinator_email %>
 
-  <% (1..@settings.number_of_recipients).each do |recipient_number| %>
-    <%= f.input "recipient#{recipient_number}_phone", label: "#{recipient_label(recipient_number)} phone" %>
-  <% end %>
+  <% recipients_title = Figaro.env.recipient_title.to_s.pluralize %>
+  <fieldset>
+    <legend><%= recipients_title %></legend>
+    <%= f.input :number_of_recipients,
+                label: "Number of #{recipients_title.downcase}",
+                collection: 1..3,
+                as: :radio,
+                input_html: {'data-orig-count'      => f.object.number_of_recipients,
+                             'data-recipient-title' => Figaro.env.recipient_title.to_s.downcase} %>
+
+    <% hidden_style = {style: 'display: none;'} %>
+    <% (1..3).each do |recipient_number| %>
+      <% wrapper_attrs = recipient_number > @settings.number_of_recipients ? hidden_style : {} %>
+      <% wrapper_attrs.merge!('data-recipient-number' => recipient_number) %>
+      <%= f.input "recipient#{recipient_number}_phone",
+                  label: "#{recipient_label(recipient_number)} phone",
+                  wrapper_html: wrapper_attrs %>
+    <% end %>
+  </fieldset>
 
   <div class="actions">
     <%= f.button :submit, "Save" %>

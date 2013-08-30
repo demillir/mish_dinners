@@ -5,6 +5,18 @@
  *= require_tree ./screen
  */
 
+fieldset {
+  border: thin solid grey;
+  margin: 20px 0 30px;
+  width: 700px;
+}
+
+fieldset legend {
+  margin-left: 2em;
+  font-size: larger;
+  padding: 0 0.6em;
+}
+
 #notice {
   color: green;
 }
@@ -93,6 +105,15 @@ form.settings div.input > label {
 
 form.settings div.input {
   margin: 1em 0;
+}
+
+form.settings div.input.radio > span {
+  display: inline-block;
+}
+
+form.settings div.input.radio label {
+  font-size: 12px;
+  padding-left: 0.3em;
 }
 
 form.settings div.actions a {
