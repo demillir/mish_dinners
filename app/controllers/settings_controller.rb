@@ -36,6 +36,6 @@ class SettingsController < ApplicationController
              :volunteer_pitch,
              :reminder_subject,
              :number_of_recipients,
-             *((1..3).map {|i| "recipient#{i}_phone"}))
+             *((1..Rails.configuration.max_recipients).map {|i| "recipient#{i}_phone"}))
   end
 end

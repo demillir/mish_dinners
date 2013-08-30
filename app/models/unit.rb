@@ -17,7 +17,7 @@ class Unit < ActiveRecord::Base
   def number_of_recipients=(val)
     return unless val.present?
     target = val.to_i
-    return unless (1..3).include?(target)
+    return unless (1..Rails.configuration.max_recipients).include?(target)
 
     current_count = number_of_recipients
 
