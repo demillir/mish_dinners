@@ -17,14 +17,11 @@ class Calendar
   delegate :uuid,              :to => :unit, :prefix => true
 
   def initialize(unit, first_sunday, options={})
-    # Eager load all of the records for the unit.
-    #
-    # Unfortunately, this will fetch all of the Meal records for all time.
-    # We can't put a where(meals: {date: (first_sunday...first_sunday+(7 * NUM_WEEKS_TO_DISPLAY))})
-    # clause in the ActiveRelation expression, because that clause will drop recipients who
-    # don't have a meal in the date range.
+    # Eager load all of the records we need for the given unit's calendar, in two stages.
+    # We have to do two stages because doing one stage was not possible in ActiveRelation
+    # without losing the recipients who don't have meals scheduled during the calendar period.
     @unit = Unit.where(id: unit.try(:id)).
-      includes(:division, :volunteers, recipients: {meals: :volunteer}).
+      includes(:division, :volunteers, :recipients).
       first
     @num_weeks_to_display = case @unit.number_of_recipients
                             when 1; 4
@@ -33,7 +30,14 @@ class Calendar
                             else;   1
                             end
 
-    @recipients = @unit.recipients
+    # Refetch each recipient, but this time, eager load the Meal records for the calendar period.
+    @recipients = @unit.recipients.sort_by(&:id).map { |recipient|
+      Recipient.where(id: recipient.id).
+        includes(meals: :volunteer).
+        where(meals: {date: (first_sunday...first_sunday+(7 * @num_weeks_to_display))}).
+        first || recipient
+    }
+
     @first_sunday = first_sunday
     @privacy      = options[:privacy]
   end
