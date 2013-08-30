@@ -1,4 +1,4 @@
-<section class="appointment <%= calendar_appointment.css_class %>">
+<section class="appointment num_weeks<%= @calendar.num_weeks_to_display %> <%= calendar_appointment.css_class %>">
   <header class="recipient"><%= calendar_appointment.recipient_number %></header>
   <table>
     <tr>

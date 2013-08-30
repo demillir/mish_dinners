@@ -5,7 +5,7 @@
 class Calendar
   include ActiveModel::Model
 
-  attr_reader :unit
+  attr_reader :unit, :num_weeks_to_display
 
   delegate :id,                :to => :unit
   delegate :coordinator_email, :to => :unit
