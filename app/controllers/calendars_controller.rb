@@ -35,7 +35,7 @@ class CalendarsController < ApplicationController
   end
 
   def set_first_sunday
-    today         = Date.today
+    today         = Date.parse(params[:date]) rescue Date.today
     @first_sunday = today - today.wday
     @first_sunday += 7 if params.has_key?(:next)
     @first_sunday -= 7 if params.has_key?(:prev)
