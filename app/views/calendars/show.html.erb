@@ -1,20 +1,22 @@
 <header>
-  <section class="instructions screen-only">
-    <p>
-      To print the calendar, use your browser's <strong>Print Preview</strong> feature!
-      Then make sure:
-    </p>
-    <ul>
-      <li>the orientation is <strong>landscape</strong>,</li>
-      <li>the margins are <strong>minimized</strong> or at most <strong>0.25 inches</strong> on all sides,</li>
-      <li>the background colors and images are enabled (if the preview looks black-and-white),</li>
-      <li>the header and footer are blank (we don't want the page's URL, page number, etc, to be printed), and</li>
-      <li>your browser is printing at <strong>100% scale</strong> (turn off any "Adjust to Fit"-like options).</li>
-    </ul>
-    <p>
-      You may need to use your browser's Page Setup feature to configure these settings.
-    </p>
-  </section>
+  <% unless @calendar.privacy %>
+    <section class="instructions screen-only">
+      <p>
+        To print the calendar, use your browser's <strong>Print Preview</strong> feature!
+        Then make sure:
+      </p>
+      <ul>
+        <li>the orientation is <strong>landscape</strong>,</li>
+        <li>the margins are <strong>minimized</strong> or at most <strong>0.25 inches</strong> on all sides,</li>
+        <li>the background colors and images are enabled (if the preview looks black-and-white),</li>
+        <li>the header and footer are blank (we don't want the page's URL, page number, etc, to be printed), and</li>
+        <li>your browser is printing at <strong>100% scale</strong> (turn off any "Adjust to Fit"-like options).</li>
+      </ul>
+      <p>
+        You may need to use your browser's Page Setup feature to configure these settings.
+      </p>
+    </section>
+  <% end %>
 
   <h1><%= ENV['CALENDAR_TITLE'] %>, <%= calendar_range(@calendar) %></h1>
 
