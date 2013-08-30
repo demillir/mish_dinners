@@ -4,7 +4,7 @@
   <%= f.error_notification %>
 
   <%= f.input :volunteer_pitch, as: :text, hint: 'HTML tags allowed' %>
-  <%= f.input :meal_time, hint: 'HTML tags allowed' %>
+  <%= f.input :meal_time, hint: 'HTML tags allowed', input_html: {size: 95} %>
   <%= f.input :reminder_subject, label: 'Reminder email subject' %>
   <%= f.input :coordinator_name %>
   <%= f.input :coordinator_email %>
