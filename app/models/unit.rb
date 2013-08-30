@@ -7,6 +7,7 @@ class Unit < ActiveRecord::Base
   validates :abbr,              :uniqueness => {:scope => :division_id, :case_sensitive => false}
   validates :coordinator_email, :presence => true
   validates :coordinator_name,  :presence => true
+  validates :uuid,              :presence => true
 
   delegate :abbr, :to => :division, :prefix => true
 
