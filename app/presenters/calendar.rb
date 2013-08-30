@@ -33,6 +33,7 @@ class Calendar
                             else;   1
                             end
 
+    @recipients = @unit.recipients
     @first_sunday = first_sunday
     @privacy      = options[:privacy]
   end
@@ -40,7 +41,7 @@ class Calendar
   def weeks
     (0...@num_weeks_to_display).map { |w|
       start_day = @first_sunday + w*7
-      CalendarWeek.new(start_day, @unit, @privacy)
+      CalendarWeek.new(start_day, @unit, @recipients, @privacy)
     }
   end
 
@@ -80,15 +81,15 @@ class Calendar
   end
 end
 
-CalendarWeek = Struct.new(:start_date, :unit, :privacy) do
+CalendarWeek = Struct.new(:start_date, :unit, :recipients, :privacy) do
   include ActiveModel::Conversion
 
   def days
     (0..6).map { |d|
       date = start_date + d
-      number_of_appointments = unit.number_of_recipients
+      number_of_appointments = recipients.size
       appointments = (1..number_of_appointments).map { |recipient_number|
-        make_appointment(unit, recipient_number, date, privacy)
+        make_appointment(recipients[recipient_number-1], recipient_number, date, privacy)
       }
       CalendarDay.new(date, appointments)
     }
@@ -96,8 +97,8 @@ CalendarWeek = Struct.new(:start_date, :unit, :privacy) do
 
   private
 
-  def make_appointment(unit, recipient_number, date, privacy)
-    appointment_data_hash = appointment_data_for_date_and_recipient_number(unit, date, recipient_number)
+  def make_appointment(recipient, recipient_number, date, privacy)
+    appointment_data_hash = appointment_data_for_date_and_recipient_number(date, recipient)
     CalendarAppointment.new(
       appointment_data_hash['name'],
       privacy ? nil : appointment_data_hash['phone'],
@@ -107,8 +108,8 @@ CalendarWeek = Struct.new(:start_date, :unit, :privacy) do
       recipient_number)
   end
 
-  def appointment_data_for_date_and_recipient_number(unit, date, recipient_number)
-    meal = unit.recipient_by_number(recipient_number).meals.find { |meal| meal.date == date } || Meal.new
+  def appointment_data_for_date_and_recipient_number(date, recipient)
+    meal = recipient.meals.find { |meal| meal.date == date } || Meal.new
     attrs = meal.volunteer ? meal.volunteer.attributes : {}
 
     attrs.merge('type' => meal.type, 'css_class' => meal.css_class)
