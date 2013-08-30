@@ -5,10 +5,6 @@
 class Calendar
   include ActiveModel::Model
 
-  # If you change the number of weeks, you'll need to tweak all of the CSS heights to make the
-  # calendar print on one sheet.
-  NUM_WEEKS_TO_DISPLAY = 3
-
   attr_reader :unit
 
   delegate :id,                :to => :unit
@@ -30,13 +26,19 @@ class Calendar
     @unit = Unit.where(id: unit.try(:id)).
       includes(:division, :volunteers, recipients: {meals: :volunteer}).
       first
+    @num_weeks_to_display = case @unit.number_of_recipients
+                            when 1; 4
+                            when 2; 3
+                            when 3; 2
+                            else;   1
+                            end
 
     @first_sunday = first_sunday
     @privacy      = options[:privacy]
   end
 
   def weeks
-    (0...NUM_WEEKS_TO_DISPLAY).map { |w|
+    (0...@num_weeks_to_display).map { |w|
       start_day = @first_sunday + w*7
       CalendarWeek.new(start_day, @unit, @privacy)
     }
