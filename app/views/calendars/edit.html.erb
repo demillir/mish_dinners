@@ -16,7 +16,7 @@
 
   <%= edit_form_buttons(@calendar) %>
 
-  <h1><%= ENV['CALENDAR_TITLE'] %>, <%= calendar_range(@calendar) %></h1>
+  <%= render :partial => 'heading' %>
 
   <table class="calendar">
     <thead>

@@ -18,7 +18,7 @@
     </section>
   <% end %>
 
-  <h1><%= ENV['CALENDAR_TITLE'] %>, <%= calendar_range(@calendar) %></h1>
+  <%= render :partial => 'heading' %>
 
   <p>
     <%= sanitize(@calendar.volunteer_pitch) %>
