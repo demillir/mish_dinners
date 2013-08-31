@@ -17,7 +17,7 @@ class Calendar
   delegate :abbr,              :to => :unit, :prefix => true
   delegate :uuid,              :to => :unit, :prefix => true
 
-  def initialize(unit, first_sunday, options={})
+  def initialize(unit, first_sunday=Date.today.beginning_of_week(start_day = :sunday), options={})
     # Eager load all of the records we need for the given unit's calendar, in two stages.
     # We have to do two stages because doing one stage was not possible in ActiveRelation
     # without losing the recipients who don't have meals scheduled during the calendar period.
