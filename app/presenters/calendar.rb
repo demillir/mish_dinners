@@ -8,6 +8,7 @@ class Calendar
   attr_reader :unit, :num_weeks_to_display, :privacy
 
   delegate :id,                :to => :unit
+  delegate :to_param,          :to => :unit
   delegate :coordinator_email, :to => :unit
   delegate :meal_time,         :to => :unit
   delegate :volunteer_pitch,   :to => :unit
@@ -40,6 +41,11 @@ class Calendar
 
     @first_sunday = first_sunday
     @privacy      = options[:privacy]
+  end
+
+  # Calendars are completely derived from persisted data, so they can always be considered to be persisted.
+  def persisted?
+    true
   end
 
   def start_date

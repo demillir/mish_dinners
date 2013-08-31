@@ -8,10 +8,7 @@
 </section>
 
 <%= form_for @calendar,
-             method: :put,
-             url: calendars_path(division_abbr: @calendar.division_abbr,
-                                 unit_abbr:     @calendar.unit_abbr,
-                                 uuid:          @calendar.unit_uuid) do |f| %>
+             url: calendar_path(@calendar, uuid: @calendar.unit_uuid) do |f| %>
   <%= link_to 'Settings', edit_setting_path(@calendar.id, :uuid => @calendar.unit_uuid), :style => 'float: right; font-size: larger;' %>
 
   <%= edit_form_buttons(@calendar) %>

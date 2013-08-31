@@ -29,8 +29,12 @@ class CalendarsController < ApplicationController
   end
 
   def set_unit
-    division = Division.find_by_abbr(params[:division_abbr])
-    @unit    = division.units.find_by_abbr(params[:unit_abbr])
+    if params.has_key?(:division_abbr) && params.has_key?(:unit_abbr)
+      division = Division.find_by_abbr(params[:division_abbr])
+      @unit    = division.units.find_by_abbr(params[:unit_abbr])
+    else
+      @unit = Unit.find(params[:id])
+    end
     raise ActiveRecord::RecordNotFound unless @unit
   end
 
