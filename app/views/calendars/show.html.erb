@@ -60,7 +60,7 @@
   <p>
     <span>View this calendar:
       <mark>
-        <%= link_to nil, url_for(division_abbr: @calendar.division_abbr, unit_abbr: @calendar.unit_abbr, only_path: false) %>
+        <%= link_to nil, url_for(action: :show, division_abbr: @calendar.division_abbr, unit_abbr: @calendar.unit_abbr, only_path: false) %>
       </mark>
     </span>
     <%= render @calendar.recipients %>
