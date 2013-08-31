@@ -4,12 +4,11 @@ class CalendarsController < ApplicationController
   before_action :set_first_sunday, only: [:show, :print, :edit, :update]
 
   def show
-    @calendar = Calendar.new(@unit, @first_sunday, privacy: true)
+    @calendar = Calendar.new(@unit, @first_sunday)
   end
 
   def print
-    @calendar = Calendar.new(@unit, @first_sunday, privacy: false)
-    render 'show'
+    @calendar = Calendar.new(@unit, @first_sunday)
   end
 
   def edit

@@ -5,7 +5,7 @@
 class Calendar
   include ActiveModel::Model
 
-  attr_reader :unit, :num_weeks_to_display, :privacy
+  attr_reader :unit, :num_weeks_to_display
 
   delegate :id,                :to => :unit
   delegate :to_param,          :to => :unit
@@ -40,7 +40,6 @@ class Calendar
     }
 
     @first_sunday = first_sunday
-    @privacy      = options[:privacy]
   end
 
   # Calendars are completely derived from persisted data, so they can always be considered to be persisted.
@@ -59,7 +58,7 @@ class Calendar
   def weeks
     (0...@num_weeks_to_display).map { |w|
       start_day = @first_sunday + w*7
-      CalendarWeek.new(start_day, @unit, @recipients, @privacy)
+      CalendarWeek.new(start_day, @unit, @recipients)
     }
   end
 
@@ -99,7 +98,7 @@ class Calendar
   end
 end
 
-CalendarWeek = Struct.new(:start_date, :unit, :recipients, :privacy) do
+CalendarWeek = Struct.new(:start_date, :unit, :recipients) do
   include ActiveModel::Conversion
 
   def days
@@ -107,7 +106,7 @@ CalendarWeek = Struct.new(:start_date, :unit, :recipients, :privacy) do
       date = start_date + d
       number_of_appointments = recipients.size
       appointments = (1..number_of_appointments).map { |recipient_number|
-        make_appointment(recipients[recipient_number-1], recipient_number, date, privacy)
+        make_appointment(recipients[recipient_number-1], recipient_number, date)
       }
       CalendarDay.new(date, appointments)
     }
@@ -115,12 +114,12 @@ CalendarWeek = Struct.new(:start_date, :unit, :recipients, :privacy) do
 
   private
 
-  def make_appointment(recipient, recipient_number, date, privacy)
+  def make_appointment(recipient, recipient_number, date)
     appointment_data_hash = appointment_data_for_date_and_recipient_number(date, recipient)
     CalendarAppointment.new(
       appointment_data_hash['name'],
-      privacy ? nil : appointment_data_hash['phone'],
-      privacy ? nil : appointment_data_hash['email'],
+      appointment_data_hash['phone'],
+      appointment_data_hash['email'],
       appointment_data_hash['type'],
       appointment_data_hash['css_class'],
       recipient_number)

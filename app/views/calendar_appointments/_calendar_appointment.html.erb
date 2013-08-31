@@ -7,11 +7,11 @@
     </tr>
     <tr>
       <td>Phone:</td>
-      <td><%= fixed_size(calendar_appointment.phone, 15) %></td>
+      <td><%= action_name == 'print' ? fixed_size(calendar_appointment.phone, 15) : nil %></td>
     </tr>
     <tr>
       <td>Email:</td>
-      <td><%= fixed_size(calendar_appointment.email, 15) %></td>
+      <td><%= action_name == 'print' ? fixed_size(calendar_appointment.email, 15) : nil %></td>
     </tr>
   </table>
 </section>

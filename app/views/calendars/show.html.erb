@@ -1,68 +1,7 @@
 <header>
-  <% unless @calendar.privacy %>
-    <section class="instructions screen-only">
-      <p>
-        To print the calendar, use your browser's <strong>Print Preview</strong> feature!
-        Then make sure:
-      </p>
-      <ul>
-        <li>the orientation is <strong>landscape</strong>,</li>
-        <li>the margins are <strong>minimized</strong> or at most <strong>0.25 inches</strong> on all sides,</li>
-        <li>the background colors and images are enabled (if the preview looks black-and-white),</li>
-        <li>the header and footer are blank (we don't want the page's URL, page number, etc, to be printed), and</li>
-        <li>your browser is printing at <strong>100% scale</strong> (turn off any "Adjust to Fit"-like options).</li>
-      </ul>
-      <p>
-        You may need to use your browser's Page Setup feature to configure these settings.
-      </p>
-
-      <% if params[:uuid].present? %>
-        <%= link_to 'Edit', edit_calendar_path(@calendar, uuid: params[:uuid]), class: :edit_btn %>
-      <% end %>
-    </section>
-  <% end %>
-
   <%= render :partial => 'heading' %>
-
-  <p>
-    <%= sanitize(@calendar.volunteer_pitch) %>
-  </p>
-  <p>
-    Preferred time: <%= sanitize(@calendar.meal_time) %>.
-    Times are flexible.
-    Questions? Email
-    <%= @calendar.coordinator_email %>.
-    Thank you!
-  </p>
 </header>
 
-<table class="calendar">
-<thead>
-<tr>
-  <th>SUN</th>
-  <th>MON</th>
-  <th>TUE</th>
-  <th>WED</th>
-  <th>THU</th>
-  <th>FRI</th>
-  <th>SAT</th>
-</tr>
-</thead>
+<%= render :partial => 'calendar_table' %>
 
-<tbody>
-
-<%= render partial: @calendar.weeks, locals: {f: nil} %>
-
-</tbody>
-</table>
-
-<footer>
-  <p>
-    <span>View this calendar:
-      <mark>
-        <%= link_to nil, url_for(action: :show, division_abbr: @calendar.division_abbr, unit_abbr: @calendar.unit_abbr, only_path: false) %>
-      </mark>
-    </span>
-    <%= render @calendar.recipients %>
-  </p>
-</footer>
+<%= render :partial => 'footing' %>

@@ -7,3 +7,14 @@
     <input type="button" value="&rArr;" />
   <% end %>
 </h1>
+
+<p>
+  <%= sanitize(@calendar.volunteer_pitch) %>
+</p>
+<p>
+  Preferred time: <%= sanitize(@calendar.meal_time) %>.
+  Times are flexible.
+  Questions? Email
+  <%= @calendar.coordinator_email %>.
+  Thank you!
+</p>
