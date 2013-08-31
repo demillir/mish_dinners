@@ -1,5 +1,6 @@
 $ ->
   $('input[type=email]').change ->
+    # The follow regex was cribbed from https://gist.github.com/elijahmanor/1765839#file-emailpattern-coffee
     emailPattern = /// ^ #begin of line
        ([\w.-]+)         #one or more letters, numbers, _ . or -
        @                 #followed by an @ sign
