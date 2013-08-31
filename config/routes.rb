@@ -1,7 +1,9 @@
 MishDinners::Application.routes.draw do
   root 'pages#home'
 
-  resources :calendars, :only => [:show, :edit, :update]
+  resources :calendars, :only => [:show, :edit, :update] do
+    get 'print', on: :member
+  end
   resources :settings,  :only => [:edit, :update]
 
   if Rails.env.development?
@@ -10,6 +12,7 @@ MishDinners::Application.routes.draw do
     get '/rails/info'            => "rails/info#index"
   end
 
+  get ':division_abbr/:unit_abbr/print' => 'calendars#print'
   get ':division_abbr/:unit_abbr/:uuid' => 'calendars#edit'
   get ':division_abbr/:unit_abbr/edit'  => 'calendars#edit'
   get ':division_abbr/:unit_abbr'       => 'calendars#show'

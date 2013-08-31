@@ -1,10 +1,15 @@
 class CalendarsController < ApplicationController
-  before_action :set_unit,         only: [:show, :edit, :update]
+  before_action :set_unit,         only: [:show, :print, :edit, :update]
   before_action :authorize,        only: [:edit, :update]
-  before_action :set_first_sunday, only: [:show, :edit]
+  before_action :set_first_sunday, only: [:show, :print, :edit, :update]
 
   def show
-    @calendar = Calendar.new(@unit, @first_sunday, privacy: !params.has_key?(:print))
+    @calendar = Calendar.new(@unit, @first_sunday, privacy: true)
+  end
+
+  def print
+    @calendar = Calendar.new(@unit, @first_sunday, privacy: false)
+    render 'show'
   end
 
   def edit
@@ -18,7 +23,7 @@ class CalendarsController < ApplicationController
     flash[:notice] = 'The calendar has been updated.'
     @calendar = Calendar.new(@unit, @first_sunday)
     if params[:commit] =~ /print/i
-      redirect_to url_for("/#{@unit.division_abbr}/#{@unit.abbr}?print&uuid=#{@unit.uuid}")
+      redirect_to print_calendar_url(@calendar, uuid: @calendar.unit_uuid, date: @calendar.start_date)
     else
       redirect_to  edit_calendar_url(@calendar, uuid: @calendar.unit_uuid, date: @calendar.start_date)
     end
