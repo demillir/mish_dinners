@@ -10,8 +10,9 @@ module CalendarHelper
 
   def edit_form_buttons(calendar)
     content_tag(:div, class: 'buttons') do
-      submit_tag("Save changes", class: "save_btn") +
-      link_to('Cancel', url_for("/#{calendar.division_abbr}/#{calendar.unit_abbr}?print"), class: "cancel_btn")
+      submit_tag("Save and Print", class: "save_and_print_btn") +
+      submit_tag("Save", class: "save_btn") +
+      link_to('Cancel', url_for("/#{calendar.division_abbr}/#{calendar.unit_abbr}?print&uuid=#{calendar.unit_uuid}"), class: "cancel_btn")
     end
   end
 

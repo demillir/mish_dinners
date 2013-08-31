@@ -18,7 +18,11 @@ class CalendarsController < ApplicationController
   def update
     @calendar = PersistedCalendar.new(@unit, params[:calendar])
     @calendar.save
-    redirect_to url_for("/#{@unit.division_abbr}/#{@unit.abbr}?print")
+    if params[:commit] =~ /print/i
+      redirect_to url_for("/#{@unit.division_abbr}/#{@unit.abbr}?print&uuid=#{@unit.uuid}")
+    else
+      redirect_to url_for("/#{@unit.division_abbr}/#{@unit.abbr}/#{@unit.uuid}")
+    end
   end
 
   private

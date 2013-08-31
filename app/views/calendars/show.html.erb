@@ -15,6 +15,10 @@
       <p>
         You may need to use your browser's Page Setup feature to configure these settings.
       </p>
+
+      <% if params[:uuid].present? %>
+        <%= button_to 'Edit', "/#{@calendar.division_abbr}/#{@calendar.unit_abbr}/#{params[:uuid]}", method: :get, class: :edit_btn %>
+      <% end %>
     </section>
   <% end %>
 
