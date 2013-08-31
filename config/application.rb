@@ -23,5 +23,7 @@ module MishDinners
 
     # We cannot accommodate more than six recipients with a single-page calendar.
     config.max_recipients = 6
+
+    config.action_mailer.default_url_options = { host: Figaro.env.app_domain }
   end
 end

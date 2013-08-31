@@ -20,7 +20,11 @@
 </p>
 
 <p>
-  You can view the sign-up calendar at <%= link_to nil, url_for("http://#{Figaro.env.app_domain}/#{@meal.division_abbr}/#{@meal.unit_abbr}") %>.
+  You can view the sign-up calendar at
+  <%= link_to nil,
+              url_for(controller: :calendars, action: :show,
+                      division_abbr: @meal.division_abbr, unit_abbr: @meal.unit_abbr,
+                      only_path: false) %>.
 </p>
 
 <p>Your act of service is greatly appreciated!</p>
