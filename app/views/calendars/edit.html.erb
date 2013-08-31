@@ -11,8 +11,7 @@
              url: calendar_path(@calendar, uuid: @calendar.unit_uuid) do |f| %>
   <%= link_to 'Settings', edit_setting_path(@calendar.id, :uuid => @calendar.unit_uuid), :style => 'float: right; font-size: larger;' %>
 
-  <%= edit_form_buttons(@calendar) %>
-
+  <%= render :partial => 'form_buttons', locals: {calendar: @calendar} %>
   <%= render :partial => 'heading' %>
 
   <table class="calendar">
@@ -35,7 +34,7 @@
     </tbody>
   </table>
 
-  <%= edit_form_buttons(@calendar) %>
+  <%= render :partial => 'form_buttons', locals: {calendar: @calendar} %>
 <% end %>
 
 <%= javascript_tag "var names_list  = #{@calendar.names_list};"  %>
