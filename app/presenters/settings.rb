@@ -27,6 +27,11 @@ class Settings
       first
   end
 
+  # Settings are completely derived from persisted data, so they can always be considered to be persisted.
+  def persisted?
+    true
+  end
+
   def update(values, options = {})
     # Update the number of recipients first, so that any new recipients are available to accept their attributes.
     if values['number_of_recipients']

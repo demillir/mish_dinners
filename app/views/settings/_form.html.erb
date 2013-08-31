@@ -1,6 +1,5 @@
 <%= simple_form_for @settings,
-                    method: :put,
-                    url:    setting_path(@settings, uuid: @settings.unit_uuid) do |f| %>
+                    url: setting_path(@settings, uuid: @settings.unit_uuid) do |f| %>
   <%= f.error_notification %>
 
   <%= f.input :volunteer_pitch, as: :text, hint: 'HTML tags allowed' %>
