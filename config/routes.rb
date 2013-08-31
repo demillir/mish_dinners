@@ -1,7 +1,7 @@
 MishDinners::Application.routes.draw do
-  root 'calendars#index'
+  root 'pages#home'
 
-  resource  :calendars, :only => [:index, :show, :edit, :update]
+  resource  :calendars, :only => [:show, :edit, :update]
   resources :settings,  :only => [:edit, :update]
 
   get ':division_abbr/:unit_abbr/:uuid' => 'calendars#edit'
