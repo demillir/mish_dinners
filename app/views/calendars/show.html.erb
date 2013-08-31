@@ -17,7 +17,7 @@
       </p>
 
       <% if params[:uuid].present? %>
-        <%= button_to 'Edit', "/#{@calendar.division_abbr}/#{@calendar.unit_abbr}/#{params[:uuid]}", method: :get, class: :edit_btn %>
+        <%= link_to 'Edit', edit_calendar_path(@calendar, uuid: params[:uuid]), class: :edit_btn %>
       <% end %>
     </section>
   <% end %>

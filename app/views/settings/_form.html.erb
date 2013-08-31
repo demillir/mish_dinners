@@ -31,6 +31,6 @@
 
   <div class="actions">
     <%= f.button :submit, "Save" %>
-    <%= link_to 'Cancel', url_for("/#{@unit.division_abbr}/#{@unit.abbr}/#{@unit.uuid}") %>
+    <%= link_to 'Cancel', edit_calendar_path(@calendar, uuid: @calendar.unit_uuid) %>
   </div>
 <% end %>

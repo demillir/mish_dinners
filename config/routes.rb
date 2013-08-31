@@ -11,5 +11,6 @@ MishDinners::Application.routes.draw do
   end
 
   get ':division_abbr/:unit_abbr/:uuid' => 'calendars#edit'
+  get ':division_abbr/:unit_abbr/edit'  => 'calendars#edit'
   get ':division_abbr/:unit_abbr'       => 'calendars#show'
 end

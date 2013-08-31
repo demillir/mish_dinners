@@ -3,12 +3,14 @@ class SettingsController < ApplicationController
   before_action :authorize, only: [:edit, :update]
 
   def edit
-    #@settings.errors.add(:coordinator_email, 'fhiasd')
+    @calendar = Calendar.new(@unit)
   end
 
   def update
     if @settings.update(settings_params)
-      redirect_to url_for("/#{@unit.division_abbr}/#{@unit.abbr}/#{@unit.uuid}"), notice: 'Settings were successfully updated.'
+      calendar = Calendar.new(@unit)
+      redirect_to edit_calendar_url(calendar, uuid: calendar.unit_uuid),
+                  notice: 'Settings were successfully updated.'
     else
       render action: 'edit'
     end

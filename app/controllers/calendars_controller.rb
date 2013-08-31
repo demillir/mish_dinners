@@ -12,12 +12,15 @@ class CalendarsController < ApplicationController
   end
 
   def update
-    @calendar = PersistedCalendar.new(@unit, params[:calendar])
-    @calendar.save
+    persisted_calendar = PersistedCalendar.new(@unit, params[:calendar])
+    persisted_calendar.save
+
+    flash[:notice] = 'The calendar has been updated.'
+    @calendar = Calendar.new(@unit, @first_sunday)
     if params[:commit] =~ /print/i
       redirect_to url_for("/#{@unit.division_abbr}/#{@unit.abbr}?print&uuid=#{@unit.uuid}")
     else
-      redirect_to url_for("/#{@unit.division_abbr}/#{@unit.abbr}/#{@unit.uuid}")
+      redirect_to  edit_calendar_url(@calendar, uuid: @calendar.unit_uuid, date: @calendar.start_date)
     end
   end
 
