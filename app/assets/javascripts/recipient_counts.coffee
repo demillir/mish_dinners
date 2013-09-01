@@ -7,4 +7,5 @@ $ ->
         $(phone_fields).show()
 
     if this.value < $(this).attr('data-orig-count')
+      # Warn the user about potential data loss
       alert("Reducing the number will remove the schedule for each discarded " + $(this).attr('data-recipient-title') + ".  If you don't want to lose the schedule, change the number back.")
