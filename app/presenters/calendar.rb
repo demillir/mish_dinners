@@ -40,7 +40,7 @@ class Calendar
     }
 
     @first_sunday = first_sunday
-    @volunteer    = options[:volunteer]
+    @options      = options
   end
 
   # Calendars are completely derived from persisted data, so they can always be considered to be persisted.
@@ -59,7 +59,7 @@ class Calendar
   def weeks
     (0...@num_weeks_to_display).map { |w|
       start_day = @first_sunday + w*7
-      CalendarWeek.new(start_day, @unit, @recipients, @volunteer)
+      CalendarWeek.new(start_day, @unit, @recipients, @options[:volunteer])
     }
   end
 
