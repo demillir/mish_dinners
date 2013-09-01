@@ -1,4 +1,4 @@
-<td class="day">
+<td class="day <%= calendar_day.of_interest? ? 'of_interest' : nil %>">
   <header><%= calendar_day.date.to_s(:short) %></header>
 
   <% if f %>

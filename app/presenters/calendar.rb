@@ -40,6 +40,7 @@ class Calendar
     }
 
     @first_sunday = first_sunday
+    @volunteer    = options[:volunteer]
   end
 
   # Calendars are completely derived from persisted data, so they can always be considered to be persisted.
@@ -58,7 +59,7 @@ class Calendar
   def weeks
     (0...@num_weeks_to_display).map { |w|
       start_day = @first_sunday + w*7
-      CalendarWeek.new(start_day, @unit, @recipients)
+      CalendarWeek.new(start_day, @unit, @recipients, @volunteer)
     }
   end
 
@@ -98,7 +99,7 @@ class Calendar
   end
 end
 
-CalendarWeek = Struct.new(:start_date, :unit, :recipients) do
+CalendarWeek = Struct.new(:start_date, :unit, :recipients, :volunteer_of_interest) do
   include ActiveModel::Conversion
 
   def days
@@ -106,7 +107,7 @@ CalendarWeek = Struct.new(:start_date, :unit, :recipients) do
       date = start_date + d
       number_of_appointments = recipients.size
       appointments = (1..number_of_appointments).map { |recipient_number|
-        make_appointment(recipients[recipient_number-1], recipient_number, date)
+        make_appointment(recipients[recipient_number-1], recipient_number, date, volunteer_of_interest)
       }
       CalendarDay.new(date, appointments)
     }
@@ -114,30 +115,36 @@ CalendarWeek = Struct.new(:start_date, :unit, :recipients) do
 
   private
 
-  def make_appointment(recipient, recipient_number, date)
-    appointment_data_hash = appointment_data_for_date_and_recipient_number(date, recipient)
+  def make_appointment(recipient, recipient_number, date, volunteer_of_interest=nil)
+    appointment_data_hash = appointment_data_for_date_and_recipient_number(date, recipient, volunteer_of_interest)
     CalendarAppointment.new(
       appointment_data_hash['name'],
       appointment_data_hash['phone'],
       appointment_data_hash['email'],
       appointment_data_hash['type'],
       appointment_data_hash['css_class'],
+      appointment_data_hash['is_of_interest'],
       recipient_number)
   end
 
-  def appointment_data_for_date_and_recipient_number(date, recipient)
+  def appointment_data_for_date_and_recipient_number(date, recipient, volunteer_of_interest=nil)
     meal = recipient.meals.find { |meal| meal.date == date } || Meal.new
     attrs = meal.volunteer ? meal.volunteer.attributes : {}
 
-    attrs.merge('type' => meal.type, 'css_class' => meal.css_class)
+    is_interesting = !volunteer_of_interest || meal.volunteer == volunteer_of_interest
+    attrs.merge('type' => meal.type, 'css_class' => meal.css_class, 'is_of_interest' => is_interesting)
   end
 end
 
-CalendarDay = Struct.new(:date, :appointments) do
+CalendarDay = Struct.new(:date, :appointments, :of_interest?) do
   include ActiveModel::Conversion
+
+  def of_interest?
+    appointments.any?(&:of_interest?)
+  end
 end
 
-CalendarAppointment = Struct.new(:name, :phone, :email, :type, :css_class, :recipient_number) do
+CalendarAppointment = Struct.new(:name, :phone, :email, :type, :css_class, :of_interest?, :recipient_number) do
   include ActiveModel::Conversion
 end
 

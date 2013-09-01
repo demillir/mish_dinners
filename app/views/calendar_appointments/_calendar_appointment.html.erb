@@ -1,17 +1,34 @@
 <section class="appointment num_weeks<%= @calendar.num_weeks_to_display %> <%= calendar_appointment.css_class %>">
-  <header class="recipient"><%= calendar_appointment.recipient_number %></header>
+  <% if calendar_appointment.of_interest? %>
+    <header class="recipient"><%= calendar_appointment.recipient_number %></header>
+  <% end %>
   <table>
     <tr>
-      <td>Name:</td>
-      <td><strong><%= fixed_size(calendar_appointment.name, 12) %></strong></td>
+      <% if calendar_appointment.of_interest? %>
+        <td>Name:</td>
+        <td><strong><%= fixed_size(calendar_appointment.name, 12) %></strong></td>
+      <% else %>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      <% end %>
     </tr>
     <tr>
-      <td>Phone:</td>
-      <td><%= action_name == 'print' ? fixed_size(calendar_appointment.phone, 15) : nil %></td>
+      <% if calendar_appointment.of_interest? %>
+        <td>Phone:</td>
+        <td><%= action_name == 'print' ? fixed_size(calendar_appointment.phone, 15) : nil %></td>
+      <% else %>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      <% end %>
     </tr>
     <tr>
-      <td>Email:</td>
-      <td><%= action_name == 'print' ? fixed_size(calendar_appointment.email, 15) : nil %></td>
+      <% if calendar_appointment.of_interest? %>
+        <td>Email:</td>
+        <td><%= action_name == 'print' ? fixed_size(calendar_appointment.email, 15) : nil %></td>
+      <% else %>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      <% end %>
     </tr>
   </table>
 </section>

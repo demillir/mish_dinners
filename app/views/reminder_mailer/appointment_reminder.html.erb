@@ -20,10 +20,19 @@
 </p>
 
 <p>
-  You can view the sign-up calendar at
+  You can view the complete sign-up calendar at
   <%= link_to nil,
               url_for(controller: :calendars, action: :show,
                       division_abbr: @meal.division_abbr, unit_abbr: @meal.unit_abbr,
+                      only_path: false) %>.
+</p>
+
+<p>
+  Or you can see just your sign-ups at
+  <%= link_to nil,
+              url_for(controller: :calendars, action: :show,
+                      division_abbr: @meal.division_abbr, unit_abbr: @meal.unit_abbr,
+                      volunteer_id: @meal.volunteer_id,
                       only_path: false) %>.
 </p>
 

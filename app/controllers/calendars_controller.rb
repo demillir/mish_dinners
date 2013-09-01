@@ -2,13 +2,14 @@ class CalendarsController < ApplicationController
   before_action :set_unit,         only: [:show, :print, :edit, :update]
   before_action :authorize,        only: [:edit, :update]
   before_action :set_first_sunday, only: [:show, :print, :edit, :update]
+  before_action :set_volunteer,    only: [:show, :print]
 
   def show
-    @calendar = Calendar.new(@unit, @first_sunday)
+    @calendar = Calendar.new(@unit, @first_sunday, volunteer: @volunteer)
   end
 
   def print
-    @calendar = Calendar.new(@unit, @first_sunday)
+    @calendar = Calendar.new(@unit, @first_sunday, volunteer: @volunteer)
   end
 
   def edit
@@ -50,5 +51,11 @@ class CalendarsController < ApplicationController
     @first_sunday = today - today.wday
     @first_sunday += 7 if params.has_key?(:next)
     @first_sunday -= 7 if params.has_key?(:prev)
+  end
+
+  def set_volunteer
+    if params[:volunteer_id]
+      @volunteer = Volunteer.where(id: params[:volunteer_id]).first
+    end
   end
 end
