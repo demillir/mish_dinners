@@ -35,6 +35,7 @@ end
 # Heroku gems
 gem 'rails_12factor', group: :production
 
+gem 'asset_sync'
 gem 'attribute_normalizer'
 gem 'figaro'
 gem 'indefinite_article'
