@@ -32,6 +32,10 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+group :production do
+  gem 'heroku-deflater'
+end
+
 # Heroku gems
 gem 'rails_12factor', group: :production
 
