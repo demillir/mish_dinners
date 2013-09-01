@@ -44,7 +44,7 @@ class Calendar
   end
 
   def cache_key
-    "#{self.class.name.tableize}/#{@unit.try(:cache_key)}/#{@first_sunday}/#{options.hash}"
+    "#{self.class.name.tableize}/#{@unit.try(:cache_key)}/#{@first_sunday}/#{@options.hash}"
   end
 
   # Calendars are completely derived from persisted data, so they can always be considered to be persisted.
