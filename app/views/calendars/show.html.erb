@@ -1,7 +1,9 @@
-<header>
-  <%= render :partial => 'heading' %>
-</header>
+<% cache @calendar do %>
+  <header>
+    <%= render :partial => 'heading' %>
+  </header>
 
-<%= render :partial => 'calendar_table' %>
+  <%= render :partial => 'calendar_table' %>
 
-<%= render :partial => 'footing' %>
+  <%= render :partial => 'footing' %>
+<% end %>
