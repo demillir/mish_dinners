@@ -1,7 +1,9 @@
-body {
-  font: 11px Garamond, Georgia, serif;
-}
+@media print {
+  body {
+    font: 11px Garamond, Georgia, serif;
+  }
 
-.screen-only, .flash {
-  display: none;
+  .screen-only, .flash {
+    display: none;
+  }
 }
