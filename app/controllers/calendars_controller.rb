@@ -1,6 +1,6 @@
 class CalendarsController < ApplicationController
   before_action :set_unit,         only: [:show, :print, :edit, :update]
-  before_action :authorize,        only: [:edit, :update]
+  before_action :authorize,        only: [       :print, :edit, :update]
   before_action :set_first_sunday, only: [:show, :print, :edit, :update]
   before_action :set_volunteer,    only: [:show, :print]
 
