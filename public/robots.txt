@@ -3,3 +3,8 @@
 # To ban all spiders from the entire site uncomment the next two lines:
 # User-agent: *
 # Disallow: /
+
+# Allow single-element paths to information pages, like /faq and /about, but not multi-element paths, which
+# go to data pages.
+User-agent: *
+Disallow: /*/
