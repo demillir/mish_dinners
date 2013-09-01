@@ -1,5 +1,5 @@
 $ ->
-  $('input[name="settings[number_of_recipients]"]').change ->
+  $('.recipient_count_radio_btn').change ->
     for phone_fields in $(this).closest('fieldset').find('[data-recipient-number]')
       if $(phone_fields).attr('data-recipient-number') > this.value
         $(phone_fields).hide()

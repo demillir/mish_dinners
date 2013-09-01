@@ -15,7 +15,8 @@
                 label: "Number of #{recipients_title.downcase}",
                 collection: 1..Rails.configuration.max_recipients,
                 as: :radio,
-                input_html: {'data-orig-count'      => f.object.number_of_recipients,
+                input_html: {:class                 => 'recipient_count_radio_btn',
+                             'data-orig-count'      => f.object.number_of_recipients,
                              'data-recipient-title' => Figaro.env.recipient_title.to_s.downcase} %>
 
     <% hidden_style = {style: 'display: none;'} %>
