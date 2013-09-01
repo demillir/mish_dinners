@@ -1,8 +1,8 @@
 class Meal < ActiveRecord::Base
   self.inheritance_column = :_type_disabled
 
-  belongs_to :volunteer
-  belongs_to :recipient
+  belongs_to :volunteer, :touch => true
+  belongs_to :recipient, :touch => true
 
   validates :type,      :presence => true
   validates :volunteer, :presence => true

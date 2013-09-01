@@ -1,5 +1,5 @@
 class Recipient < ActiveRecord::Base
-  belongs_to :unit
+  belongs_to :unit, :touch => true
   has_many   :meals, :dependent => :destroy
 
   validates :unit, :presence => true

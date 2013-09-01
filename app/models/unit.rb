@@ -1,5 +1,5 @@
 class Unit < ActiveRecord::Base
-  belongs_to :division
+  belongs_to :division, :touch => true
   has_many   :recipients, :dependent => :destroy
   has_many   :volunteers, :dependent => :destroy
 
