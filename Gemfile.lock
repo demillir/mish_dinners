@@ -41,6 +41,9 @@ GEM
     coffee-script-source (1.6.3)
     dalli (2.6.4)
     erubis (2.7.0)
+    exception_notification (4.0.0)
+      actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
     excon (0.25.3)
     execjs (2.0.0)
     figaro (0.7.0)
@@ -158,6 +161,7 @@ DEPENDENCIES
   attribute_normalizer
   coffee-rails (~> 4.0.0)
   dalli
+  exception_notification
   figaro
   heroku-deflater
   indefinite_article
