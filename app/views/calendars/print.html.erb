@@ -24,7 +24,7 @@
     <%= render :partial => 'heading' %>
   </header>
 
-  <%= render :partial => 'calendar_table' %>
+  <%= render :partial => 'calendar_table', locals: {f: nil} %>
 
   <%= render :partial => 'footing' %>
 <% end %>

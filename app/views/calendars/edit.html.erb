@@ -14,25 +14,7 @@
   <%= render :partial => 'form_buttons', locals: {calendar: @calendar} %>
   <%= render :partial => 'heading' %>
 
-  <table class="calendar">
-    <thead>
-    <tr>
-      <th>SUN</th>
-      <th>MON</th>
-      <th>TUE</th>
-      <th>WED</th>
-      <th>THU</th>
-      <th>FRI</th>
-      <th>SAT</th>
-    </tr>
-    </thead>
-
-    <tbody>
-
-    <%= render partial: @calendar.weeks, locals: {f: f} %>
-
-    </tbody>
-  </table>
+  <%= render :partial => 'calendar_table', locals: {f: f} %>
 
   <%= render :partial => 'form_buttons', locals: {calendar: @calendar} %>
 <% end %>
