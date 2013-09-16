@@ -28,8 +28,7 @@ module CalendarHelper
   private
 
   def adjacent_calendar_path(calendar, multiplier)
-    days_in_calendar = calendar.end_date - calendar.start_date + 1
-    new_calendar_start_date = calendar.start_date + (multiplier * days_in_calendar)
+    new_calendar_start_date = adjacent_start_date(calendar, multiplier)
 
     uri = URI(request.original_fullpath)
     date_query = {date: new_calendar_start_date}.to_query
@@ -41,5 +40,10 @@ module CalendarHelper
       uri.query = [uri.query, date_query].join('&')
     end
     uri.to_s
+  end
+
+  def adjacent_start_date(calendar, multiplier)
+    days_in_calendar = calendar.end_date - calendar.start_date + 1
+    calendar.start_date + (multiplier * days_in_calendar)
   end
 end
