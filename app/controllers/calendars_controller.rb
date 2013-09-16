@@ -20,15 +20,16 @@ class CalendarsController < ApplicationController
     persisted_calendar = PersistedCalendar.new(@unit, params[:calendar])
     persisted_calendar.save
 
-    flash[:notice] = 'The calendar has been updated.'
     @calendar = Calendar.new(@unit, @first_sunday)
     if params[:commit] =~ /print/i
+      flash[:notice] = 'The calendar has been updated.'
       redirect_to print_calendar_url(@calendar, uuid: @calendar.unit_uuid, date: @calendar.start_date)
     elsif params[:commit] == "<="
       redirect_to  edit_calendar_url(@calendar, uuid: @calendar.unit_uuid, date: params[:adjacent][:left])
     elsif params[:commit] == "=>"
       redirect_to  edit_calendar_url(@calendar, uuid: @calendar.unit_uuid, date: params[:adjacent][:right])
     else
+      flash[:notice] = 'The calendar has been updated.'
       redirect_to  edit_calendar_url(@calendar, uuid: @calendar.unit_uuid, date: @calendar.start_date)
     end
   end
