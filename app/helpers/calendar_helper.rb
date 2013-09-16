@@ -18,6 +18,15 @@ module CalendarHelper
     end
   end
 
+  def adjacent_calendar_link(calendar, multiplier)
+    left_or_right = multiplier < 0 ? 'left' : 'right'
+    link_to adjacent_calendar_path(calendar, multiplier), class: "#{left_or_right} screen-only" do
+      button_tag raw("&#{left_or_right[0]}Arr;"), type: "button"
+    end
+  end
+
+  private
+
   def adjacent_calendar_path(calendar, multiplier)
     days_in_calendar = calendar.end_date - calendar.start_date + 1
     new_calendar_start_date = calendar.start_date + (multiplier * days_in_calendar)
