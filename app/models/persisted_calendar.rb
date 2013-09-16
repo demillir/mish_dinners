@@ -22,7 +22,10 @@ class PersistedCalendar
         meal = recipient.meals.
           where(date: date_str).
           first_or_initialize
-        meal.update_attributes(volunteer: volunteer, type: meal_type)
+        meal.assign_attributes(volunteer: volunteer, type: meal_type)
+        if !meal.persisted? || meal.changed?
+          meal.save
+        end
       end
     end
 
