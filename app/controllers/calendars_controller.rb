@@ -24,6 +24,10 @@ class CalendarsController < ApplicationController
     @calendar = Calendar.new(@unit, @first_sunday)
     if params[:commit] =~ /print/i
       redirect_to print_calendar_url(@calendar, uuid: @calendar.unit_uuid, date: @calendar.start_date)
+    elsif params[:commit] == "<="
+      redirect_to  edit_calendar_url(@calendar, uuid: @calendar.unit_uuid, date: params[:adjacent][:left])
+    elsif params[:commit] == "=>"
+      redirect_to  edit_calendar_url(@calendar, uuid: @calendar.unit_uuid, date: params[:adjacent][:right])
     else
       redirect_to  edit_calendar_url(@calendar, uuid: @calendar.unit_uuid, date: @calendar.start_date)
     end

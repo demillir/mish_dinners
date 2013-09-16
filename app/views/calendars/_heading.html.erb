@@ -1,7 +1,7 @@
 <h1>
-  <%= adjacent_calendar_link(@calendar, -1) %>
+  <%= adjacent_calendar_link(@calendar, -1, f) %>
   <%= ENV['CALENDAR_TITLE'] %>, <%= calendar_range(@calendar) %>
-  <%= adjacent_calendar_link(@calendar,  1) %>
+  <%= adjacent_calendar_link(@calendar,  1, f) %>
 </h1>
 
 <p>

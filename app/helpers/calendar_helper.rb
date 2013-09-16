@@ -18,10 +18,15 @@ module CalendarHelper
     end
   end
 
-  def adjacent_calendar_link(calendar, multiplier)
+  def adjacent_calendar_link(calendar, multiplier, form=nil)
     left_or_right = multiplier < 0 ? 'left' : 'right'
-    link_to adjacent_calendar_path(calendar, multiplier), class: "#{left_or_right} screen-only" do
-      button_tag raw("&#{left_or_right[0]}Arr;"), type: "button"
+    if form
+      submit_tag(left_or_right == 'left' ? "<=" : "=>") +
+        hidden_field(:adjacent, left_or_right, value: adjacent_start_date(calendar, multiplier))
+    else
+      link_to adjacent_calendar_path(calendar, multiplier), class: "#{left_or_right} screen-only" do
+        button_tag raw("&#{left_or_right[0]}Arr;"), type: "button"
+      end
     end
   end
 

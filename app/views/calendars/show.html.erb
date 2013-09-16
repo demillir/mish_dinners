@@ -1,6 +1,6 @@
 <% cache @calendar do %>
   <header class="heading">
-    <%= render :partial => 'heading' %>
+    <%= render :partial => 'heading', locals: {f: nil} %>
   </header>
 
   <%= render :partial => 'calendar_table', locals: {f: nil} %>

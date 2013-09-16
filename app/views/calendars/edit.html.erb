@@ -12,7 +12,7 @@
   <%= link_to 'Settings', edit_setting_path(@calendar.id, :uuid => @calendar.unit_uuid), :style => 'float: right; font-size: larger;' %>
 
   <%= render :partial => 'form_buttons', locals: {calendar: @calendar} %>
-  <%= render :partial => 'heading' %>
+  <%= render :partial => 'heading', locals: {f: f} %>
 
   <%= render :partial => 'calendar_table', locals: {f: f} %>
 
