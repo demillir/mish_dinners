@@ -19,10 +19,10 @@ class PersistedCalendar
 
         # Find or create a matching Meal record, and give it the Volunteer and meal type.
         recipient = @unit.recipient_by_number(recipient_number_str.to_i)
-        recipient.meals.
+        meal = recipient.meals.
           where(date: date_str).
-          first_or_initialize.
-          update_attributes(volunteer: volunteer, type: meal_type)
+          first_or_initialize
+        meal.update_attributes(volunteer: volunteer, type: meal_type)
       end
     end
 
