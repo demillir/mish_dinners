@@ -1,7 +1,8 @@
 /*
  *= require html5reset-1.6.1
  *= require_self
- *= require_tree .
+ *= require calendar
+ *= require_tree ./screen
  */
 
 fieldset {
