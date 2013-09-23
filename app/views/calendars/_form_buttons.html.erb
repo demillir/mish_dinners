@@ -3,5 +3,5 @@
   <%= label_tag :pages_count, 'Weeks to print: ' %>
   <%= select_tag :pages_count, options_for_select((1..10).map {|i| [i*calendar.num_weeks_to_display, i]}) %>
   <%= submit_tag("PDF for printing", class: "save_and_print_btn") %>
-  <%= link_to('Cancel', print_calendar_path(calendar, uuid: calendar.unit_uuid), class: :cancel_btn) %>
+  <%= link_to('Cancel', edit_calendar_path(calendar, uuid: calendar.unit_uuid), class: :cancel_btn) %>
 </div>
