@@ -1,3 +1,5 @@
+<% page_offset = 0 unless defined?(page_offset) && page_offset %>
+
 <table class="calendar">
   <thead>
   <tr>
@@ -13,7 +15,7 @@
 
   <tbody>
 
-  <%= render partial: @calendar.weeks, locals: {f: f} %>
+  <%= render partial: @calendar.weeks(page_offset), locals: {f: f} %>
 
   </tbody>
 </table>

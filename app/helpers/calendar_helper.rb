@@ -9,8 +9,10 @@ module CalendarHelper
   end
 
   def calendar_range(calendar, page_offset=0)
-    start_date   = calendar.start_date
-    end_date     = calendar.end_date
+    weeks_offset = page_offset * calendar.num_weeks_to_display
+    days_offset  = weeks_offset * 7
+    start_date   = calendar.start_date + days_offset
+    end_date     = calendar.end_date + days_offset
 
     if start_date.at_beginning_of_month == end_date.at_beginning_of_month
       start_date.at_beginning_of_month.strftime('%B %Y')

@@ -3,12 +3,12 @@
 <% end %>
 
 <% cache @calendar do %>
-  <% 1.times do |page_offset| %>
+  <% @pages_count.times do |page_offset| %>
     <header class="heading">
-      <%= render :partial => 'heading', locals: {f: nil} %>
+      <%= render :partial => 'heading', locals: {f: nil, page_offset: page_offset} %>
     </header>
 
-    <%= render :partial => 'calendar_table', locals: {f: nil} %>
+    <%= render :partial => 'calendar_table', locals: {f: nil, page_offset: page_offset} %>
 
     <%= render :partial => 'footing' %>
   <% end %>
