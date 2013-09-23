@@ -171,11 +171,19 @@ div.buttons {
   margin: 0 10px;
 }
 
+.buttons label {
+  font-size: 150%;
+  position: relative;
+  top: 2px;
+  padding-left: 75px;
+}
+
 .cancel_btn {
   font-size: 24px;
   line-height: 50px;
   position: relative;
   top: 6px;
+  padding-left: 75px;
 }
 
 .edit_btn {

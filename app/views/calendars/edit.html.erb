@@ -17,8 +17,6 @@
   <%= render :partial => 'heading', locals: {f: f} %>
 
   <%= render :partial => 'calendar_table', locals: {f: f} %>
-
-  <%= render :partial => 'form_buttons', locals: {calendar: @calendar} %>
 <% end %>
 
 <%= javascript_tag "var names_list  = #{@calendar.names_list};"  %>
