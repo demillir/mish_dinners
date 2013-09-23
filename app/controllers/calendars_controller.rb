@@ -9,8 +9,8 @@ class CalendarsController < ApplicationController
   end
 
   def print
-    @calendar = Calendar.new(@unit, @first_sunday, volunteer: @volunteer)
     @pages_count = [params[:pages_count].to_i, 1].max
+    @calendar = Calendar.new(@unit, @first_sunday, volunteer: @volunteer, pages_count: @pages_count)
   end
 
   def edit

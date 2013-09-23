@@ -32,10 +32,11 @@ class Calendar
                             end
 
     # Refetch each recipient, but this time, eager load the Meal records for the calendar period.
+    pages_count = options[:pages_count] || 1
     @recipients = @unit.recipients.sort_by(&:id).map { |recipient|
       Recipient.where(id: recipient.id).
         includes(meals: :volunteer).
-        where(meals: {date: (first_sunday...first_sunday+(7 * @num_weeks_to_display))}).
+        where(meals: {date: (first_sunday...first_sunday+(7 * pages_count * @num_weeks_to_display))}).
         first || recipient
     }
 
