@@ -8,13 +8,16 @@ module CalendarHelper
     end
   end
 
-  def calendar_range(calendar)
-    if calendar.start_date.at_beginning_of_month == calendar.end_date.at_beginning_of_month
-      calendar.start_date.at_beginning_of_month.strftime('%B %Y')
-    elsif calendar.start_date.year == calendar.end_date.year
-      "#{calendar.start_date.strftime('%b')}-#{calendar.end_date.strftime('%b %Y')}"
+  def calendar_range(calendar, page_offset=0)
+    start_date   = calendar.start_date
+    end_date     = calendar.end_date
+
+    if start_date.at_beginning_of_month == end_date.at_beginning_of_month
+      start_date.at_beginning_of_month.strftime('%B %Y')
+    elsif start_date.year == end_date.year
+      "#{start_date.strftime('%b')}-#{end_date.strftime('%b %Y')}"
     else
-      "#{calendar.start_date.strftime('%b %Y')} - #{calendar.end_date.strftime('%b %Y')}"
+      "#{start_date.strftime('%b %Y')} - #{end_date.strftime('%b %Y')}"
     end
   end
 
