@@ -1,6 +1,8 @@
+<% page_offset = 0 unless defined?(page_offset) && page_offset %>
+
 <h1>
   <%= adjacent_calendar_link(@calendar, -1, f) %>
-  <%= ENV['CALENDAR_TITLE'] %>, <%= calendar_range(@calendar) %>
+  <%= ENV['CALENDAR_TITLE'] %>, <%= calendar_range(@calendar, page_offset) %>
   <%= adjacent_calendar_link(@calendar,  1, f) %>
 </h1>
 

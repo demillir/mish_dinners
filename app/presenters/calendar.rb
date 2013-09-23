@@ -60,8 +60,9 @@ class Calendar
     weeks.last.days.last.date
   end
 
-  def weeks
-    (0...@num_weeks_to_display).map { |w|
+  def weeks(page_offset=0)
+    weeks_offset = page_offset * @num_weeks_to_display
+    (weeks_offset...weeks_offset+@num_weeks_to_display).map { |w|
       start_day = @first_sunday + w*7
       CalendarWeek.new(start_day, @unit, @recipients, @options[:volunteer])
     }

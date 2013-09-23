@@ -1,7 +1,8 @@
 /*
  *= require html5reset-1.6.1
  *= require_self
- *= require_tree .
+ *= require calendar
+ *= require_tree ./screen
  */
 
 fieldset {
@@ -170,11 +171,19 @@ div.buttons {
   margin: 0 10px;
 }
 
+.buttons label {
+  font-size: 150%;
+  position: relative;
+  top: 2px;
+  padding-left: 75px;
+}
+
 .cancel_btn {
   font-size: 24px;
   line-height: 50px;
   position: relative;
   top: 6px;
+  padding-left: 75px;
 }
 
 .edit_btn {
@@ -211,7 +220,7 @@ div.buttons {
   font-style:normal;
   height:36px;
   line-height:36px;
-  width:155px;
+  width:175px;
   text-decoration:none;
   text-align:center;
   text-shadow:1px 1px 0px #c70067;

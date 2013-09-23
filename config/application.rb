@@ -2,6 +2,7 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 require 'pp'
+require 'wicked_pdf'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -23,6 +24,8 @@ module MishDinners
 
     # We cannot accommodate more than six recipients with a single-page calendar.
     config.max_recipients = 6
+
+    config.middleware.use WickedPdf::Middleware
 
     config.action_mailer.default_url_options = { host: ENV['APP_DOMAIN'] }
   end

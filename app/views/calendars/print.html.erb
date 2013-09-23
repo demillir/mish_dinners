@@ -1,31 +1,16 @@
+<% content_for :head do %>
+  <%= wicked_pdf_stylesheet_link_tag "application-print" %>
+<% end %>
+
 <% cache @calendar do %>
-  <header class="heading">
-    <section class="instructions screen-only">
-      <p>
-        To print the calendar, use your browser's <strong>Print Preview</strong> feature!
-        Then make sure:
-      </p>
-      <ul>
-        <li>the orientation is <strong>landscape</strong>,</li>
-        <li>the margins are <strong>minimized</strong> or at most <strong>0.25 inches</strong> on all sides,</li>
-        <li>the background colors and images are enabled (if the preview looks black-and-white),</li>
-        <li>the header and footer are blank (we don't want the page's URL, page number, etc, to be printed), and</li>
-        <li>your browser is printing at <strong>100% scale</strong> (turn off any "Adjust to Fit"-like options).</li>
-      </ul>
-      <p>
-        You may need to use your browser's Page Setup feature to configure these settings.
-      </p>
+  <% @pages_count.times do |page_offset| %>
+    <header class="heading">
+      <%= render :partial => 'heading', locals: {f: nil, page_offset: page_offset} %>
+    </header>
 
-      <% if params[:uuid].present? %>
-        <%= link_to 'Edit', edit_calendar_path(@calendar, uuid: params[:uuid]), class: :edit_btn %>
-      <% end %>
-    </section>
+    <%= render :partial => 'calendar_table', locals: {f: nil, page_offset: page_offset} %>
 
-    <%= render :partial => 'heading', locals: {f: nil} %>
-  </header>
-
-  <%= render :partial => 'calendar_table', locals: {f: nil} %>
-
-  <%= render :partial => 'footing' %>
+    <%= render :partial => 'footing' %>
+  <% end %>
 <% end %>
 

@@ -10,6 +10,7 @@ class CalendarsController < ApplicationController
 
   def print
     @calendar = Calendar.new(@unit, @first_sunday, volunteer: @volunteer)
+    @pages_count = [params[:pages_count].to_i, 1].max
   end
 
   def edit
@@ -23,7 +24,8 @@ class CalendarsController < ApplicationController
     @calendar = Calendar.new(@unit, @first_sunday)
     if params[:commit] =~ /print/i
       flash[:notice] = 'The calendar has been updated.'
-      redirect_to print_calendar_url(@calendar, uuid: @calendar.unit_uuid, date: @calendar.start_date)
+      redirect_to print_calendar_url(@calendar, uuid: @calendar.unit_uuid, date: @calendar.start_date,
+                                     pages_count: params[:pages_count], format: :pdf)
     elsif params[:commit] == "<="
       redirect_to  edit_calendar_url(@calendar, uuid: @calendar.unit_uuid, date: params[:adjacent][:left])
     elsif params[:commit] == "=>"
