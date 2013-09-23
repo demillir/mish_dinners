@@ -1,5 +1,5 @@
 <div class="buttons">
-  <%= submit_tag("Save and Print", class: "save_and_print_btn") %>
   <%= submit_tag("Save", class: "save_btn") %>
+  <%= submit_tag("PDF for printing", class: "save_and_print_btn") %>
   <%= link_to('Cancel', print_calendar_path(calendar, uuid: calendar.unit_uuid), class: :cancel_btn) %>
 </div>
