@@ -16,9 +16,12 @@ class VolunteersController < ApplicationController
   # Return at most one volunteer, and make it the most recent volunteer having the given name.
   # Make the search case-insensitive.
   def fetch_volunteers(name)
-    @unit.volunteers.
-      where('name ILIKE ?', name).
+    Meal.
+      for_unit(@unit).
+      joins(:volunteer).
+      merge(Volunteer.name_like(name)).
       order(created_at: :desc).
-      limit(1)
+      limit(1).
+      map(&:volunteer)
   end
 end

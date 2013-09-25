@@ -14,4 +14,8 @@ class Volunteer < ActiveRecord::Base
     includes(:meals).
       where(meals: {id: nil})
   }
+
+  scope :name_like, -> (name) {
+    where('name ILIKE ?', name)
+  }
 end
