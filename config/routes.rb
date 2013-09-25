@@ -4,6 +4,7 @@ MishDinners::Application.routes.draw do
   resources :calendars, :only => [:show, :edit, :update] do
     get 'print', on: :member
 
+    resources :volunteers,         :only => [:index]
     resources :reminder_emailings, :only => [:create]
   end
 
