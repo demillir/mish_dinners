@@ -38,20 +38,6 @@ class CalendarsController < ApplicationController
 
   private
 
-  def authorize
-    raise ActiveRecord::RecordNotFound unless params[:uuid].present?
-    raise ActiveRecord::RecordNotFound unless params[:uuid] == @unit.uuid
-  end
-
-  def set_unit
-    if params.has_key?(:division_abbr) && params.has_key?(:unit_abbr)
-      division = Division.find_by_abbr!(params[:division_abbr])
-      @unit    = division.units.find_by_abbr!(params[:unit_abbr])
-    else
-      @unit = Unit.find(params[:id])
-    end
-  end
-
   def set_first_sunday
     today         = Date.parse(params[:date]) rescue Date.today
     @first_sunday = today - today.wday

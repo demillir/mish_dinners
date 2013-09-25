@@ -12,4 +12,8 @@ class Recipient < ActiveRecord::Base
   delegate :meal_time,         :to => :unit
   delegate :division_abbr,     :to => :unit
   delegate :abbr,              :to => :unit, :prefix => true
+
+  scope :for_unit, -> (unit) {
+    where(unit_id: unit.id)
+  }
 end
