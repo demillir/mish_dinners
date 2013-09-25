@@ -40,6 +40,7 @@ end
 gem 'rails_12factor', group: :production
 gem 'wkhtmltopdf-heroku'
 
+gem 'active_model_serializers'
 gem 'asset_sync'
 gem 'attribute_normalizer'
 gem 'dalli'

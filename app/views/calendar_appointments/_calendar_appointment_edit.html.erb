@@ -2,18 +2,42 @@
   <% recip_number = calendar_appointment.recipient_number %>
   <header class="recipient"><%= recip_number %></header>
   <%= f.fields_for recip_number.to_s do |af| %>
-    <table>
+    <table data-lookup-group>
       <tr>
         <td>Name:</td>
-        <td><%= af.text_field :name, :class => 'edit_input copyable', :value => calendar_appointment.name, 'data-autocomplete-source' => :names_list %></td>
+        <td>
+          <%= af.text_field :name,
+                            :class => 'edit_input copyable',
+                            :value => calendar_appointment.name,
+                            :data => {
+                              url:  calendar_volunteers_path(@calendar),
+                              uuid: @calendar.unit_uuid,
+                            },
+                            'data-lookup-source' => true,
+                            'data-lookup-target' => 'name',
+                            'data-autocomplete-source' => :names_list %>
+        </td>
       </tr>
       <tr>
         <td>Phone:</td>
-        <td><%= af.text_field :phone, :class => 'edit_input copyable', :value => calendar_appointment.phone, 'data-autocomplete-source' => :phones_list %></td>
+        <td>
+          <%= af.text_field :phone,
+                            :class => 'edit_input copyable',
+                            :value => calendar_appointment.phone,
+                            'data-lookup-target' => 'phone',
+                            'data-autocomplete-source' => :phones_list %>
+        </td>
       </tr>
       <tr>
         <td>Email:</td>
-        <td><%= af.text_field :email, :class => 'edit_input copyable', :value => calendar_appointment.email, 'data-autocomplete-source' => :emails_list, :type => :email %></td>
+        <td>
+          <%= af.text_field :email,
+                            :class => 'edit_input copyable',
+                            :value => calendar_appointment.email,
+                            'data-autocomplete-source' => :emails_list,
+                            'data-lookup-target' => 'email',
+                            :type => :email %>
+        </td>
       </tr>
       <% Figaro.env.meal_types.split.each do |meal_type| %>
         <% lbl = Meal.css_class_for_type(meal_type) %>
