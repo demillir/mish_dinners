@@ -1,4 +1,4 @@
-<section>
+<section id='help-section' style='display: none;'>
   <h2>Recommendations:</h2>
   <ul>
     <li>Use family names ("Smith", "Jones") rather than longer individual names (e.g. "Smith Family", "Joanne Jones")</li>
@@ -11,7 +11,8 @@
              url: calendar_path(@calendar,
                                 date: @calendar.start_date,
                                 uuid: @calendar.unit_uuid) do |f| %>
-  <%= link_to 'Settings', edit_setting_path(@calendar.id, :uuid => @calendar.unit_uuid), :style => 'float: right; font-size: larger;' %>
+  <%= link_to_function 'Help', "$('#help-section').toggle(1000)", :style => 'float: right; font-size: larger; margin-left: 1em;' %>
+  <%= link_to 'Settings', edit_setting_path(@calendar.id, :uuid => @calendar.unit_uuid), :style => 'float: right; font-size: larger; margin-left: 1em;' %>
 
   <%= render :partial => 'print_controls', locals: {calendar: @calendar} %>
   <%= render :partial => 'form_buttons', locals: {calendar: @calendar} %>
