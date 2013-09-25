@@ -3,7 +3,10 @@ MishDinners::Application.routes.draw do
 
   resources :calendars, :only => [:show, :edit, :update] do
     get 'print', on: :member
+
+    resources :reminder_emailings, :only => [:create]
   end
+
   resources :settings,  :only => [:edit, :update]
 
   if Rails.env.development?
