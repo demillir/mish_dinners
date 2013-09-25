@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
     if params.has_key?(:division_abbr) && params.has_key?(:unit_abbr)
       division = Division.find_by_abbr!(params[:division_abbr])
       @unit    = division.units.find_by_abbr!(params[:unit_abbr])
+    elsif params.has_key?(:calendar_id)
+      @unit = Unit.find(params[:calendar_id])
     else
       @unit = Unit.find(params[:id])
     end
