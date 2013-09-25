@@ -20,6 +20,11 @@ class Meal < ActiveRecord::Base
   delegate :division_abbr,     :to => :recipient
   delegate :unit_abbr,         :to => :recipient
 
+  scope :for_unit, -> (unit) {
+    joins(:recipient).
+      merge(Recipient.for_unit(unit))
+  }
+
   scope :remindable_for_date, -> (date) {
     joins(:volunteer).
       merge(Volunteer.having_email).

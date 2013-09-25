@@ -2,8 +2,8 @@
 # a given date.
 
 class ReminderEmailer
-  def initialize(target_date)
-    @meals = meals_for_date(target_date)
+  def initialize(target_date, unit=nil)
+    @meals = meals_for_date(target_date, unit)
   end
 
   def send_reminders
@@ -15,8 +15,9 @@ class ReminderEmailer
 
   private
 
-  def meals_for_date(date)
-    remindable_meals = Meal.remindable_for_date(date)
+  def meals_for_date(date, unit)
+    meal_scope = unit ? Meal.for_unit(unit) : Meal
+    remindable_meals = meal_scope.remindable_for_date(date)
 
     # Group the meals into equivalence classes,
     # where two meals are equivalent if they have the same set of recipients.
