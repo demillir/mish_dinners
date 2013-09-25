@@ -150,6 +150,13 @@ section.appointment td label {
   background: #cbebbc;
 }
 
+.send-reminder-btn {
+  font-size: 10px;
+  height: 20px;
+  background: #bccbeb;
+  float: left;
+}
+
 .ui-menu {
   list-style: none;
   border: 1px solid #222;
