@@ -124,6 +124,7 @@ CalendarWeek = Struct.new(:start_date, :unit, :recipients, :volunteer_of_interes
   def make_appointment(recipient, recipient_number, date, volunteer_of_interest=nil)
     appointment_data_hash = appointment_data_for_date_and_recipient_number(date, recipient, volunteer_of_interest)
     CalendarAppointment.new(
+      date,
       appointment_data_hash['name'],
       appointment_data_hash['phone'],
       appointment_data_hash['email'],
@@ -150,7 +151,7 @@ CalendarDay = Struct.new(:date, :appointments, :of_interest?) do
   end
 end
 
-CalendarAppointment = Struct.new(:name, :phone, :email, :type, :css_class, :of_interest?, :recipient_number) do
+CalendarAppointment = Struct.new(:date, :name, :phone, :email, :type, :css_class, :of_interest?, :recipient_number) do
   include ActiveModel::Conversion
 end
 
