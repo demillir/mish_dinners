@@ -9,6 +9,7 @@
           <%= af.text_field :name,
                             :class => 'edit_input copyable',
                             :value => calendar_appointment.name,
+                            :type  => :search,
                             :data => {
                               url:  calendar_volunteers_path(@calendar),
                               uuid: @calendar.unit_uuid,
@@ -24,6 +25,7 @@
           <%= af.text_field :phone,
                             :class => 'edit_input copyable',
                             :value => calendar_appointment.phone,
+                            :type  => :tel,
                             'data-lookup-target' => 'phone',
                             'data-autocomplete-source' => :phones_list %>
         </td>
