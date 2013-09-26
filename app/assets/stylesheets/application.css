@@ -169,6 +169,10 @@ section.appointment td label {
   background: #ffb3c2;
 }
 
+.wait {
+  cursor: wait;
+}
+
 div.buttons {
   text-align: center;
   margin: 20px;

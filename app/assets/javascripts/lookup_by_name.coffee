@@ -14,8 +14,10 @@ $ ->
     uuid       = $(this).attr('data-uuid')
     name       = $(this).val()
     targets    = ($('#' + target_id) for target_id in $(this).data('target_ids'))
-    $.get lookup_url, uuid: uuid, name: name, (data) ->
+    $(this).addClass("wait")
+    $.get lookup_url, uuid: uuid, name: name, (data) =>
       stuff_lookup_targets(targets, data.volunteers[0])
+      $(this).removeClass("wait")
 
 
 stuff_lookup_targets = (targets, volunteer_data) ->
