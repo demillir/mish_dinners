@@ -20,7 +20,7 @@ class VolunteersController < ApplicationController
       for_unit(@unit).
       joins(:volunteer).
       merge(Volunteer.name_like(name)).
-      order(created_at: :desc).
+      order(updated_at: :desc).
       limit(1).
       map(&:volunteer)
   end
