@@ -57,7 +57,7 @@
 
 <% if recip_number == 1 %>
   <div style='text-align: right;'>
-    <%= button_tag "Email(s)",
+    <%= button_tag "Email&hellip;".html_safe,
                    :type => :button,
                    :class => 'send-reminder-btn',
                    :data => {
