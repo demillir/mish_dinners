@@ -1,5 +1,3 @@
-<%= render :partial => 'help' %>
-
 <%= form_for @calendar,
              url: calendar_path(@calendar,
                                 date: @calendar.start_date,
@@ -13,6 +11,8 @@
               :style => 'float: right; font-size: larger; margin-left: 1em;' %>
 
   <%= render :partial => 'print_controls', locals: {calendar: @calendar} %>
+  <%= render :partial => 'help' %>
+
   <%= render :partial => 'form_buttons', locals: {calendar: @calendar} %>
 
   <%= render :partial => 'heading', locals: {f: f} %>
