@@ -11,8 +11,13 @@
              url: calendar_path(@calendar,
                                 date: @calendar.start_date,
                                 uuid: @calendar.unit_uuid) do |f| %>
-  <%= link_to_function 'Help', "$('#help-section').toggle(1000)", :style => 'float: right; font-size: larger; margin-left: 1em;' %>
-  <%= link_to 'Settings', edit_setting_path(@calendar.id, :uuid => @calendar.unit_uuid), :style => 'float: right; font-size: larger; margin-left: 1em;' %>
+  <%= link_to 'Help',
+              '#',
+              :onclick => "$('#help-section').toggle(1000); return false;",
+              :style => 'float: right; font-size: larger; margin-left: 1em;' %>
+  <%= link_to 'Settings',
+              edit_setting_path(@calendar.id, :uuid => @calendar.unit_uuid),
+              :style => 'float: right; font-size: larger; margin-left: 1em;' %>
 
   <%= render :partial => 'print_controls', locals: {calendar: @calendar} %>
   <%= render :partial => 'form_buttons', locals: {calendar: @calendar} %>
