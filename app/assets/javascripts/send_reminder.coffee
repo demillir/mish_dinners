@@ -19,6 +19,7 @@ $ ->
       query_params = $.param(post_params) + '&' + $(this).closest('td.day').find('input').serialize()
 
       reminder_emailings_url = $(this).attr('data-url')
+      $.blockUI()
       $.post reminder_emailings_url
         , query_params
         , (data) ->
