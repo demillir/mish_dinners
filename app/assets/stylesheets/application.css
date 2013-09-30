@@ -52,6 +52,10 @@ fieldset legend {
   list-style: square;
 }
 
+#flash_messages {
+  font-size: 18px;
+}
+
 .flash {
   text-align: center;
   padding:	.3em .4em;
