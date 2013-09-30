@@ -92,6 +92,7 @@ fieldset legend {
 #help-section {
   background-color: #ffff99;
   padding: 1em 0.7em;
+  font-size: 14px;
 }
 
 form.settings {
