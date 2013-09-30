@@ -13,8 +13,11 @@ class ReminderEmailingsController < ApplicationController
 
     target_date = Date.parse(params[:date]) rescue nil
     if target_date
-      ReminderEmailer.new(target_date, @unit).send_reminders
-      head :ok
+      email_recipients = ReminderEmailer.new(target_date, @unit).send_reminders
+      sent_descriptions = email_recipients.empty? \
+        ? ["0 emails"] \
+        : email_recipients.map { |email| "an email to #{email}" }
+      render :json => {info: "Sent #{sent_descriptions.to_sentence}"}
     else
       head :unprocessable_entity
     end

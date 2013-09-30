@@ -6,11 +6,16 @@ class ReminderEmailer
     @meals = meals_for_date(target_date, unit)
   end
 
+  # Returns an array of the email addresses to which an email was sent.
   def send_reminders
     # Send a reminder email for each meal
-    @meals.each do |meal|
-      ReminderMailer.appointment_reminder(meal).deliver
+    recipients = []
+    @meals.sort_by(&:recipient_id).each do |meal|
+      reminder_email = ReminderMailer.appointment_reminder(meal)
+      reminder_email.deliver
+      recipients += reminder_email.to
     end
+    recipients
   end
 
   private

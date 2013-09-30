@@ -21,3 +21,5 @@ $ ->
       reminder_emailings_url = $(this).attr('data-url')
       $.post reminder_emailings_url
         , query_params
+        , (data) ->
+          alert data['info']
