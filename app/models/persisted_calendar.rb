@@ -4,7 +4,7 @@
 class PersistedCalendar
   def initialize(unit, params)
     @unit   = unit
-    @params = params
+    @params = params || {}
   end
 
   def save
