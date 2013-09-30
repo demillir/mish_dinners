@@ -64,8 +64,8 @@
                      url:  calendar_reminder_emailings_path(@calendar),
                      uuid: @calendar.unit_uuid,
                      date: calendar_appointment.date.to_s,
+                     confirm: "Send reminder emails to all the volunteers for #{calendar_appointment.date.to_s(:short)}?  The automatic email will still be sent, as well.",
                    },
-                   :data => {:confirm => "Send reminder emails to all the volunteers for #{calendar_appointment.date.to_s(:short)}?  The automatic email will still be sent, as well."},
                    :title => 'Send reminder email(s) to all volunteers.  An automatic email will still be sent, as well.' %>
     <%= button_tag "Copy &darr;".html_safe,
                    :type => :button,
