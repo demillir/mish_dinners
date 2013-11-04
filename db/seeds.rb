@@ -18,8 +18,8 @@ unit = division.units.create!(abbr:              'un',
                               reminder_subject:  '[Volunteer Meal] Sign-up reminder',
                               volunteer_pitch:   pitch)
 
-recip1 = unit.recipients.create!(phone: '555-444-2222')
-recip2 = unit.recipients.create!(phone: '555-333-1111')
+recip1 = unit.recipients.create!(phone: '555-444-2222', name: 'Recipient One', initials: '1')
+recip2 = unit.recipients.create!(phone: '555-333-1111', name: 'Recipient Two', initials: '2')
 
 volunteer1 = unit.volunteers.create!(name: 'Smith', phone: '555-111-2222', email: 'smith@smith.com')
 volunteer2 = unit.volunteers.create!(name: 'Jones', phone: '555-222-3333', email: 'jones@jones.com')
