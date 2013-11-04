@@ -1,10 +1,19 @@
 module CalendarHelper
   def recipient_title(recipient)
-    recipient.name.present? ? recipient.name : "#{ENV['RECIPIENT_TITLE']} #{recipient.number}"
+    if recipient.respond_to?(:name) && recipient.name.present?
+      recipient.name
+    else
+      index = recipient.number
+      "#{ENV['RECIPIENT_TITLE']} #{index}"
+    end
   end
 
   def recipient_abbreviation(appointment)
-    appointment.recipient_initials.present? ? appointment.recipient_initials : appointment.recipient_number
+    if appointment.respond_to?(:recipient_initials) && appointment.recipient_initials.present?
+      "#{appointment.recipient_initials}"
+    else
+      "#{appointment.recipient_number}"
+    end
   end
 
   def fixed_size(text, truncate_at)
