@@ -38,6 +38,8 @@ class SettingsController < ApplicationController
              :volunteer_pitch,
              :reminder_subject,
              :number_of_recipients,
+             *((1..Rails.configuration.max_recipients).map {|i| "recipient#{i}_name"}),
+             *((1..Rails.configuration.max_recipients).map {|i| "recipient#{i}_initials"}),
              *((1..Rails.configuration.max_recipients).map {|i| "recipient#{i}_phone"}))
   end
 end
