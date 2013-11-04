@@ -1,6 +1,6 @@
 <section class="appointment <%= calendar_appointment.css_class %>" style="height: auto;">
   <% recip_number = calendar_appointment.recipient_number %>
-  <header class="recipient"><%= recip_number %></header>
+  <header class="recipient"><%= recipient_abbreviation(calendar_appointment) %></header>
   <%= f.fields_for recip_number.to_s do |af| %>
     <table data-lookup-group>
       <tr>
