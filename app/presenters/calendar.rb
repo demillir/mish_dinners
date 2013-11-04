@@ -74,6 +74,7 @@ class Calendar
       recipient_data_hash = recipient_data_for_recipient_number(@unit, i)
       CalendarRecipient.new(
         recipient_data_hash['number'],
+        recipient_data_hash['initials'],
         recipient_data_hash['phone']
       )
     }
@@ -131,6 +132,7 @@ CalendarWeek = Struct.new(:start_date, :unit, :recipients, :volunteer_of_interes
       appointment_data_hash['type'],
       appointment_data_hash['css_class'],
       appointment_data_hash['is_of_interest'],
+      appointment_data_hash['recipient_initials'],
       recipient_number)
   end
 
@@ -139,7 +141,10 @@ CalendarWeek = Struct.new(:start_date, :unit, :recipients, :volunteer_of_interes
     attrs = meal.volunteer ? meal.volunteer.attributes : {}
 
     is_interesting = !volunteer_of_interest || meal.volunteer == volunteer_of_interest
-    attrs.merge('type' => meal.type, 'css_class' => meal.css_class, 'is_of_interest' => is_interesting)
+    attrs.merge('type' => meal.type,
+                'css_class' => meal.css_class,
+                'recipient_initials' => recipient.initials,
+                'is_of_interest' => is_interesting)
   end
 end
 
@@ -151,10 +156,10 @@ CalendarDay = Struct.new(:date, :appointments, :of_interest?) do
   end
 end
 
-CalendarAppointment = Struct.new(:date, :name, :phone, :email, :type, :css_class, :of_interest?, :recipient_number) do
+CalendarAppointment = Struct.new(:date, :name, :phone, :email, :type, :css_class, :of_interest?, :recipient_initials, :recipient_number) do
   include ActiveModel::Conversion
 end
 
-CalendarRecipient = Struct.new(:number, :phone) do
+CalendarRecipient = Struct.new(:number, :initials, :phone) do
   include ActiveModel::Conversion
 end
