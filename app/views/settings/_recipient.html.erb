@@ -1,0 +1,17 @@
+<% appropriate_style = recipient_number > settings.number_of_recipients ? 'display: none;' : '' %>
+
+<div data-recipient-number="<%= recipient_number %>" style="<%= appropriate_style %>">
+  <hr/>
+  <%= f.input "recipient#{recipient_number}_name",
+              label: "#{recipient_label(recipient_number)} label",
+              input_html: {size: 12} %>
+
+  <%= f.input "recipient#{recipient_number}_initials",
+              label: "#{recipient_label(recipient_number)} initials",
+              input_html: {size: 2} %>
+
+  <%= f.input "recipient#{recipient_number}_phone",
+              label: "#{recipient_label(recipient_number)} phone",
+              input_html: {size: 12} %>
+
+</div>

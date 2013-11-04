@@ -1,6 +1,6 @@
 <section class="appointment num_weeks<%= @calendar.num_weeks_to_display %> <%= calendar_appointment.css_class %>">
   <% if calendar_appointment.of_interest? %>
-    <header class="recipient"><%= calendar_appointment.recipient_number %></header>
+    <header class="recipient"><%= recipient_abbreviation(calendar_appointment) %></header>
   <% end %>
   <table>
     <tr>

@@ -3,6 +3,7 @@ class Recipient < ActiveRecord::Base
   has_many   :meals, :dependent => :destroy
 
   validates :unit, :presence => true
+  validates :initials, length: { maximum: 2 }
 
   normalize_attribute :phone, with: :dashed_phone
 

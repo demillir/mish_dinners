@@ -7,9 +7,9 @@ class SettingsController < ApplicationController
   end
 
   def update
+    @calendar = Calendar.new(@unit)
     if @settings.update(settings_params)
-      calendar = Calendar.new(@unit)
-      redirect_to edit_calendar_url(calendar, uuid: calendar.unit_uuid),
+      redirect_to edit_calendar_url(@calendar, uuid: @calendar.unit_uuid),
                   notice: 'Settings were successfully updated.'
     else
       render action: 'edit'
@@ -38,6 +38,8 @@ class SettingsController < ApplicationController
              :volunteer_pitch,
              :reminder_subject,
              :number_of_recipients,
+             *((1..Rails.configuration.max_recipients).map {|i| "recipient#{i}_name"}),
+             *((1..Rails.configuration.max_recipients).map {|i| "recipient#{i}_initials"}),
              *((1..Rails.configuration.max_recipients).map {|i| "recipient#{i}_phone"}))
   end
 end

@@ -19,13 +19,8 @@
                              'data-orig-count'      => f.object.number_of_recipients,
                              'data-recipient-title' => Figaro.env.recipient_title.to_s.downcase} %>
 
-    <% hidden_style = {style: 'display: none;'} %>
     <% (1..Rails.configuration.max_recipients).each do |recipient_number| %>
-      <% wrapper_attrs = recipient_number > @settings.number_of_recipients ? hidden_style : {} %>
-      <% wrapper_attrs.merge!('data-recipient-number' => recipient_number) %>
-      <%= f.input "recipient#{recipient_number}_phone",
-                  label: "#{recipient_label(recipient_number)} phone",
-                  wrapper_html: wrapper_attrs %>
+      <%= render :partial => 'recipient', locals: {f: f, recipient_number: recipient_number, settings: @settings} %>
     <% end %>
   </fieldset>
 

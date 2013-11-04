@@ -1,4 +1,12 @@
 module CalendarHelper
+  def recipient_title(recipient)
+    recipient.name.present? ? recipient.name : "#{ENV['RECIPIENT_TITLE']} #{recipient.number}"
+  end
+
+  def recipient_abbreviation(appointment)
+    appointment.recipient_initials.present? ? appointment.recipient_initials : appointment.recipient_number
+  end
+
   def fixed_size(text, truncate_at)
     text_str = text.to_s
     return text_str if text_str.length <= truncate_at

@@ -42,8 +42,19 @@ class Settings
     values.each do |k, v|
       send("#{k}=", v)
     end
-    unit.recipients.each(&:save)
-    unit.save
+    unit.recipients.each_with_index do |recipient, idx|
+      unless recipient.save
+        recipient.errors.each do |attr, msg|
+          self.errors.add "recipient#{idx+1}_#{attr}", msg
+        end
+      end
+    end
+    unless unit.save
+      unit.errors.each do |attr, msg|
+        self.errors.add attr, msg
+      end
+    end
+    self.errors.empty?
   end
 
   def recipients
