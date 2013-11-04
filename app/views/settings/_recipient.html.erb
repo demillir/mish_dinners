@@ -4,10 +4,12 @@
   <hr/>
   <%= f.input "recipient#{recipient_number}_name",
               label: "#{recipient_label(recipient_number)} label",
+              hint: "defaults to '#{recipient_title(recipient_number)}'",
               input_html: {size: 12} %>
 
   <%= f.input "recipient#{recipient_number}_initials",
               label: "#{recipient_label(recipient_number)} initials",
+              hint: "defaults to '#{recipient_abbreviation(recipient_number)}'",
               input_html: {size: 2} %>
 
   <%= f.input "recipient#{recipient_number}_phone",

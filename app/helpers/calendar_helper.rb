@@ -3,7 +3,7 @@ module CalendarHelper
     if recipient.respond_to?(:name) && recipient.name.present?
       recipient.name
     else
-      index = recipient.number
+      index = recipient.respond_to?(:number) ? recipient.number : recipient
       "#{ENV['RECIPIENT_TITLE']} #{index}"
     end
   end
@@ -11,8 +11,10 @@ module CalendarHelper
   def recipient_abbreviation(appointment)
     if appointment.respond_to?(:recipient_initials) && appointment.recipient_initials.present?
       "#{appointment.recipient_initials}"
-    else
+    elsif appointment.respond_to?(:recipient_number)
       "#{appointment.recipient_number}"
+    else
+      "#{appointment}"
     end
   end
 
