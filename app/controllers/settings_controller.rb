@@ -7,9 +7,9 @@ class SettingsController < ApplicationController
   end
 
   def update
+    @calendar = Calendar.new(@unit)
     if @settings.update(settings_params)
-      calendar = Calendar.new(@unit)
-      redirect_to edit_calendar_url(calendar, uuid: calendar.unit_uuid),
+      redirect_to edit_calendar_url(@calendar, uuid: @calendar.unit_uuid),
                   notice: 'Settings were successfully updated.'
     else
       render action: 'edit'
