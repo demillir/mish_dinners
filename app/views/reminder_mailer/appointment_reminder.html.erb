@@ -16,8 +16,21 @@
 
 <p>
   You can reach the <%= Figaro.env.recipient_title.downcase.pluralize(@meal_recipients.size) %>
-  at <%= @meal_recipients.map(&:phone).find_all(&:present?).uniq.join(' and ') %>.
+  at:
 </p>
+
+<table cellspacing="0" cellpadding="3" border="0">
+  <% @meal_recipients.each do |recipient| %>
+    <tr>
+      <td>
+        <%= recipient_title(recipient) %>:
+      </td>
+      <td>
+        <%= recipient.phone %>
+      </td>
+    </tr>
+  <% end %>
+</table>
 
 <p>
   You can view the complete sign-up calendar at

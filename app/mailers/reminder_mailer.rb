@@ -1,5 +1,6 @@
 class ReminderMailer < ActionMailer::Base
   helper :application
+  helper :calendar
 
   def appointment_reminder(meal)
     @meal = meal
