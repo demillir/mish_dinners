@@ -1,6 +1,8 @@
-<% hidden_style = {style: 'display: none;'} %>
-<% wrapper_attrs = recipient_number > settings.number_of_recipients ? hidden_style : {} %>
-<% wrapper_attrs.merge!('data-recipient-number' => recipient_number) %>
-<%= f.input "recipient#{recipient_number}_phone",
-            label: "#{recipient_label(recipient_number)} phone",
-            wrapper_html: wrapper_attrs %>
+<% appropriate_style = recipient_number > settings.number_of_recipients ? 'display: none;' : '' %>
+
+<div data-recipient-number="<%= recipient_number %>" style="<%= appropriate_style %>">
+  <%= f.input "recipient#{recipient_number}_phone",
+              label: "#{recipient_label(recipient_number)} phone",
+              input_html: {size: 12} %>
+
+</div>
