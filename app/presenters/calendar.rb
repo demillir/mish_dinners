@@ -74,6 +74,7 @@ class Calendar
       recipient_data_hash = recipient_data_for_recipient_number(@unit, i)
       CalendarRecipient.new(
         recipient_data_hash['number'],
+        recipient_data_hash['name'],
         recipient_data_hash['initials'],
         recipient_data_hash['phone']
       )
@@ -160,6 +161,6 @@ CalendarAppointment = Struct.new(:date, :name, :phone, :email, :type, :css_class
   include ActiveModel::Conversion
 end
 
-CalendarRecipient = Struct.new(:number, :initials, :phone) do
+CalendarRecipient = Struct.new(:number, :name, :initials, :phone) do
   include ActiveModel::Conversion
 end

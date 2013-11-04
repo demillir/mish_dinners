@@ -1,6 +1,6 @@
 module CalendarHelper
   def recipient_title(recipient)
-    "#{ENV['RECIPIENT_TITLE']} #{recipient.number}"
+    recipient.name.present? ? recipient.name : "#{ENV['RECIPIENT_TITLE']} #{recipient.number}"
   end
 
   def recipient_abbreviation(appointment)
