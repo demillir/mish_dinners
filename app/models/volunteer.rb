@@ -16,6 +16,6 @@ class Volunteer < ActiveRecord::Base
   }
 
   scope :name_like, -> (name) {
-    where('name ILIKE ?', name)
+    where("#{Volunteer.table_name}.name ILIKE ?", name)
   }
 end
