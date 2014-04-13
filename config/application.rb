@@ -29,6 +29,6 @@ module MishDinners
 
     config.action_mailer.default_url_options = { host: ENV['APP_DOMAIN'] }
 
-    config.action_view.sanitized_allowed_attributes = 'style'
+    config.action_view.sanitized_allowed_attributes = %w(style)
   end
 end
