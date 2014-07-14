@@ -1,28 +1,42 @@
-== README
+== Mish-Dinners Web Application
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This complete web app manages a calendar of meals prepared by volunteers.
+Dan Milliron developed the application to satisfy the scenario of church congregations providing meals to
+missionaries serving in the local congregation.
+A congregation can have multiple missionary teams needing meals, and multiple families signing up to prepare the meals.
+The web application is multi-tenant;
+a single instance of the application can serve any number of individually-configured congregations.
 
-Things you may want to cover:
+=== Features:
 
-* Ruby version
+* Automatic email reminders sent to the meal providers two days ahead of time 
 
-* System dependencies
+* Meals can be served in-home or be "sack lunch"
 
-* Configuration
+* Any number of congregations, each operating independently
 
-* Database creation
+* Any number of meal providers
 
-* Database initialization
+* Up to six individual recipient parties per congregation
 
-* How to run the test suite
+* Each congregation has their own coordinator who does the data entry
 
-* Services (job queues, cache servers, search engines, etc.)
+=== The Meal Coordinator
 
-* Deployment instructions
+Each congregation needs to have a meal coordinator.
+The coordinator is responsible for printing out the calendar so it can be passed around during services for
+congregation members to sign up.
+After services, the coordinator uses a web browser to enter the sign-ups into the web application.
+If a volunteer included their email address when they signed up,
+the web application will automatically send the volunteer a reminder email two days in advance of the meal.
+The coordinator can also print out the calendar for distribution to the meal recipients,
+so the recipients will know who is providing the meals and how to contact the providers, if needed.
 
-* ...
+=== Tech Details
 
+* Ruby 2.X
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+* Rails 4.X
+
+* Developed for Heroku deployment, but Heroku is not required
+
