@@ -40,3 +40,19 @@ so the recipients will know who is providing the meals and how to contact the pr
 
 * Developed for Heroku deployment, but Heroku is not required
 
+=== Local Development MacOS Environment
+
+set the following environment variables:
+export EXCEPTION_NOTIFICATION_RECIPIENTS=[example1@example.com, example2@example.com]
+export DATABASE_NAME=mishdb
+export DATABASE_USER=vallard
+export DATABASE_PASS=
+
+==== setup:
+rake db:setup
+rake db:migrate
+rake db:fixtures:load
+
+
+
+

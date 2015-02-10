@@ -16,7 +16,33 @@ ActiveRecord::Schema.define(version: 20131104023623) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "divisions", force: true do |t|
+  create_table "appointments", force: :cascade do |t|
+    t.integer  "day_id"
+    t.integer  "recipient_id"
+    t.string   "name"
+    t.string   "phone"
+    t.string   "email"
+    t.string   "css_class"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "appointments", ["day_id"], name: "index_appointments_on_day_id", using: :btree
+  add_index "appointments", ["email"], name: "index_appointments_on_email", using: :btree
+  add_index "appointments", ["name"], name: "index_appointments_on_name", using: :btree
+  add_index "appointments", ["phone"], name: "index_appointments_on_phone", using: :btree
+  add_index "appointments", ["recipient_id"], name: "index_appointments_on_recipient_id", using: :btree
+
+  create_table "days", force: :cascade do |t|
+    t.integer  "unit_id"
+    t.date     "date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "days", ["unit_id"], name: "index_days_on_unit_id", using: :btree
+
+  create_table "divisions", force: :cascade do |t|
     t.string   "abbr"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -24,7 +50,7 @@ ActiveRecord::Schema.define(version: 20131104023623) do
 
   add_index "divisions", ["abbr"], name: "index_divisions_on_abbr", using: :btree
 
-  create_table "meals", force: true do |t|
+  create_table "meals", force: :cascade do |t|
     t.string   "type"
     t.integer  "volunteer_id"
     t.integer  "recipient_id"
@@ -36,7 +62,7 @@ ActiveRecord::Schema.define(version: 20131104023623) do
   add_index "meals", ["recipient_id"], name: "index_meals_on_recipient_id", using: :btree
   add_index "meals", ["volunteer_id"], name: "index_meals_on_volunteer_id", using: :btree
 
-  create_table "recipients", force: true do |t|
+  create_table "recipients", force: :cascade do |t|
     t.integer  "unit_id"
     t.string   "phone"
     t.datetime "created_at"
@@ -47,7 +73,7 @@ ActiveRecord::Schema.define(version: 20131104023623) do
 
   add_index "recipients", ["unit_id"], name: "index_recipients_on_unit_id", using: :btree
 
-  create_table "units", force: true do |t|
+  create_table "units", force: :cascade do |t|
     t.integer  "division_id"
     t.string   "abbr"
     t.string   "coordinator_email"
@@ -63,7 +89,7 @@ ActiveRecord::Schema.define(version: 20131104023623) do
   add_index "units", ["abbr"], name: "index_units_on_abbr", using: :btree
   add_index "units", ["division_id"], name: "index_units_on_division_id", using: :btree
 
-  create_table "volunteers", force: true do |t|
+  create_table "volunteers", force: :cascade do |t|
     t.integer  "unit_id"
     t.string   "name"
     t.string   "phone"
