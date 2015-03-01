@@ -1,6 +1,7 @@
 /*
  *= require html5reset-1.6.1
  *= require_self
+ *= require jquery-ui/autocomplete
  *= require calendar
  *= require_tree ./screen
  */
