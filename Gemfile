@@ -48,6 +48,7 @@ gem 'figaro'
 gem 'indefinite_article'
 gem 'memcachier'
 gem 'newrelic_rpm'
+gem 'responders'
 gem 'wicked_pdf'
 gem 'simple_form'
 
