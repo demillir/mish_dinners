@@ -129,11 +129,11 @@ form.settings div.input {
   margin: 1em 0;
 }
 
-form.settings div.input.radio > span {
+form.settings div.input.radio_buttons > span {
   display: inline-block;
 }
 
-form.settings div.input.radio label {
+form.settings div.input.radio_buttons label {
   font-size: 12px;
   padding-left: 0.3em;
 }

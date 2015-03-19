@@ -41,7 +41,7 @@ class PersistedCalendar
   # Before we search for an existing matching Volunteer record, normalize the search attributes
   # so we are comparing apples to apples.
   def normalize_volunteer_attributes(unnormalized_attrs)
-    normalizer_obj = Volunteer.new(unnormalized_attrs.slice('name', 'phone', 'email'))
+    normalizer_obj = Volunteer.new(unnormalized_attrs.permit('name', 'phone', 'email'))
     normalizer_obj.attributes.slice('name', 'phone', 'email')
   end
 end

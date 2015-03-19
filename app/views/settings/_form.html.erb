@@ -1,12 +1,13 @@
 <%= simple_form_for @settings,
+                    html: {:class => 'settings'},
                     url: setting_path(@settings, uuid: @settings.unit_uuid) do |f| %>
   <%= f.error_notification %>
 
   <%= f.input :volunteer_pitch, as: :text, hint: 'HTML tags allowed' %>
   <%= f.input :meal_time, hint: 'HTML tags allowed', input_html: {size: 95} %>
-  <%= f.input :reminder_subject, label: 'Reminder email subject' %>
-  <%= f.input :coordinator_name %>
-  <%= f.input :coordinator_email %>
+  <%= f.input :reminder_subject, label: 'Reminder email subject', input_html: {size: 50} %>
+  <%= f.input :coordinator_name, input_html: {size: 50} %>
+  <%= f.input :coordinator_email, input_html: {size: 50} %>
 
   <% recipients_title = Figaro.env.recipient_title.to_s.pluralize %>
   <fieldset>
@@ -14,7 +15,7 @@
     <%= f.input :number_of_recipients,
                 label: "Number of #{recipients_title.downcase}",
                 collection: 1..Rails.configuration.max_recipients,
-                as: :radio,
+                as: :radio_buttons,
                 input_html: {:class                 => 'recipient_count_radio_btn',
                              'data-orig-count'      => f.object.number_of_recipients,
                              'data-recipient-title' => Figaro.env.recipient_title.to_s.downcase} %>
